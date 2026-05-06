@@ -26,6 +26,17 @@
         @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.1); } }
         .brand-name { font-size: 24px; font-weight: 800; background: linear-gradient(45deg, #FFD700, #FFA500, #FFD700); -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: 2px; margin-top: 4px; }
         .brand-slogan { font-size: 11px; color: rgba(255,215,0,0.6); letter-spacing: 3px; margin-top: 4px; }
+        .online-indicator { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 12px 0; padding: 10px 16px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 20px; }
+        .online-dot { width: 10px; height: 10px; background: #10B981; border-radius: 50%; animation: onlinePulse 1.5s infinite; box-shadow: 0 0 10px rgba(16, 185, 129, 0.6); }
+        @keyframes onlinePulse { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } }
+        .online-text { color: #10B981; font-size: 13px; font-weight: 700; }
+        .online-count { color: #FFD700; font-size: 14px; font-weight: 800; }
+        .notifications-ticker { background: rgba(0, 0, 0, 0.3); border: 1px solid rgba(255, 215, 0, 0.15); border-radius: 12px; padding: 10px 14px; margin: 12px 0; overflow: hidden; height: 44px; position: relative; }
+        .notification-item { display: flex; align-items: center; gap: 8px; color: white; font-size: 12px; position: absolute; width: 100%; padding-right: 20px; transition: all 0.3s ease; }
+        .notification-icon-saque { color: #FF4757; font-size: 16px; }
+        .notification-icon-deposito { color: #10B981; font-size: 16px; }
+        .notification-amount-saque { color: #FF4757; font-weight: 700; }
+        .notification-amount-deposito { color: #10B981; font-weight: 700; }
         .input-wrapper { margin: 12px 0; position: relative; }
         .input-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); font-size: 18px; z-index: 1; }
         .auth-input { width: 100%; padding: 16px 16px 16px 48px; border: 2px solid rgba(255,215,0,0.2); border-radius: 14px; background: rgba(0,0,0,0.4); color: #FFD700; font-size: 15px; transition: all 0.3s; }
@@ -69,7 +80,6 @@
         .vip-name-riqueza { font-size: 22px; font-weight: 800; color: #FFD700; text-shadow: 0 0 20px rgba(255,215,0,0.3); }
         .vip-info-riqueza { color: rgba(255,255,255,0.9); margin: 6px 0; font-size: 14px; }
         .vip-badge-riqueza { display: inline-block; background: linear-gradient(135deg, rgba(255,215,0,0.3), rgba(255,165,0,0.2)); padding: 5px 14px; border-radius: 20px; font-size: 11px; color: #FFD700; margin: 3px; border: 1px solid rgba(255,215,0,0.4); }
-        .vip-divider { border-top: 1px solid rgba(255,215,0,0.15); margin: 8px 0; }
         .fundo-card-riqueza { border-radius: 20px; padding: 22px; margin: 14px 0; cursor: pointer; transition: all 0.3s; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .fundo-card-riqueza:active { transform: scale(0.98); }
         .fundo-riqueza-0 { background: linear-gradient(135deg, #0d3b0d, #1a5c1a, #0d3b0d); border: 2px solid #10B981; }
@@ -122,9 +132,6 @@
         input:checked+.toggle-slider { background-color: #FFD700; }
         input:checked+.toggle-slider:before { transform: translateX(26px); }
         .badge-notification { background: #FF4757; color: white; border-radius: 50%; padding: 3px 9px; font-size: 12px; font-weight: 700; margin-left: 8px; display: inline-block; min-width: 24px; text-align: center; }
-        .admin-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 11px; }
-        .admin-table th { background: rgba(255,215,0,0.2); color: #FFD700; padding: 12px 8px; text-align: left; font-weight: 700; }
-        .admin-table td { padding: 12px 8px; border-bottom: 1px solid rgba(255,215,0,0.08); color: white; }
         .saque-amount-btn { background: rgba(255,215,0,0.08); padding: 16px; border-radius: 12px; text-align: center; cursor: pointer; color: #FFD700; font-weight: 700; transition: all 0.3s; border: 1px solid rgba(255,215,0,0.2); }
         .saque-amount-btn:hover { background: rgba(255,215,0,0.2); transform: scale(1.05); }
         .saque-amount-btn.disabled { background: rgba(255,71,87,0.06); color: #555; cursor: not-allowed; pointer-events: none; opacity: 0.5; }
@@ -146,9 +153,9 @@
         @keyframes pulseInstall { 0%,100% { box-shadow: 0 8px 30px rgba(255,215,0,0.5); } 50% { box-shadow: 0 8px 50px rgba(255,215,0,0.9); } }
         .install-icon { font-size: 20px; }
         .usuarios-list-container { background: rgba(0,0,0,0.3); border-radius: 16px; border: 1px solid rgba(255,215,0,0.2); margin-top: 12px; }
-        .usuarios-list-header { display: grid; grid-template-columns: 50px 2fr 2fr 1fr 80px 130px; padding: 14px 16px; background: rgba(255,215,0,0.15); border-radius: 16px 16px 0 0; font-weight: 700; font-size: 12px; color: #FFD700; position: sticky; top: 0; z-index: 5; }
+        .usuarios-list-header { display: grid; padding: 14px 16px; background: rgba(255,215,0,0.15); border-radius: 16px 16px 0 0; font-weight: 700; font-size: 12px; color: #FFD700; position: sticky; top: 0; z-index: 5; }
         .usuarios-scroll { max-height: 55vh; overflow-y: auto; }
-        .usuario-row-item { display: grid; grid-template-columns: 50px 2fr 2fr 1fr 80px 130px; padding: 12px 16px; border-bottom: 1px solid rgba(255,215,0,0.08); font-size: 12px; color: white; transition: background 0.2s; animation: fadeInRow 0.3s ease; }
+        .usuario-row-item { display: grid; padding: 12px 16px; border-bottom: 1px solid rgba(255,215,0,0.08); font-size: 12px; color: white; transition: background 0.2s; animation: fadeInRow 0.3s ease; }
         .usuario-row-item:hover { background: rgba(255,215,0,0.05); }
         @keyframes fadeInRow { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
         .vip-badge-admin { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 10px; font-weight: 700; }
@@ -162,23 +169,30 @@
         .contador-admin-item { background: rgba(255,215,0,0.05); border: 1px solid rgba(255,215,0,0.15); border-radius: 12px; padding: 12px 8px; text-align: center; }
         .contador-admin-item .label { font-size: 10px; color: rgba(255,255,255,0.6); display: block; }
         .contador-admin-item .valor { font-size: 20px; font-weight: 800; color: #FFD700; display: block; margin-top: 4px; }
-        @media (max-width: 768px) {
-            .usuarios-list-header, .usuario-row-item { grid-template-columns: 40px 2fr 1fr 70px; font-size: 11px; }
-            .usuarios-list-header span:nth-child(3), .usuario-row-item span:nth-child(3),
-            .usuarios-list-header span:nth-child(6), .usuario-row-item span:nth-child(6) { display: none; }
-            .contadores-admin { grid-template-columns: repeat(2,1fr); }
-        }
+        .admin-vip-ouro { background: linear-gradient(45deg, #FFD700, #FFA500) !important; color: #000 !important; font-weight: bold !important; }
+        .admin-vip-prata { background: linear-gradient(45deg, #C0C0C0, #E8E8E8) !important; color: #000 !important; font-weight: bold !important; }
+        .admin-vip-bronze { background: linear-gradient(45deg, #CD7F32, #D2691E) !important; color: #fff !important; font-weight: bold !important; }
     </style>
 </head>
 <body>
     <div class="particles" id="particles"></div>
-
     <div id="authScreen" class="main-container">
         <div class="auth-card">
             <div class="brand-header">
                 <div class="brand-logo-large">🦊</div>
                 <div class="brand-name">GENINS INVESTIMENT</div>
                 <div class="brand-slogan">Plataforma de Investimentos de Elite</div>
+            </div>
+            <div class="online-indicator">
+                <div class="online-dot"></div>
+                <span class="online-text">Pessoas online agora:</span>
+                <span class="online-count" id="onlineCount">100.000</span>
+            </div>
+            <div class="notifications-ticker" id="notificationsTicker">
+                <div class="notification-item" id="currentNotification">
+                    <span class="notification-icon-deposito">💰</span>
+                    <span style="color:white;">Carregando transações...</span>
+                </div>
             </div>
             <div id="referralMessage" class="referral-msg hidden"></div>
             <div class="input-wrapper"><span class="input-icon">📱</span><input type="text" id="loginPhone" class="auth-input" placeholder="Número de Telefone"></div>
@@ -198,7 +212,6 @@
             </div>
         </div>
     </div>
-
     <div id="appScreen" class="app-container">
         <div class="app-header">
             <span class="app-logo" id="logoGenins" onclick="handleLogoClick()">🦊 GENINS</span>
@@ -215,32 +228,23 @@
         </div>
         <button id="installButton" class="install-btn hidden" onclick="installApp()"><span class="install-icon">📲</span> Instalar App</button>
     </div>
-
     <script>
-        // ==================== FIREBASE ====================
         const firebaseConfig = {
-            apiKey: "AIzaSyAtGr-kQVQIpwCv7mFrJH_Q7l2_BEeuw1s",
-            authDomain: "genins-investiment.firebaseapp.com",
-            databaseURL: "https://genins-investiment-default-rtdb.firebaseio.com",
-            projectId: "genins-investiment",
-            storageBucket: "genins-investiment.firebasestorage.app",
-            messagingSenderId: "243114417474",
-            appId: "1:243114417474:web:bfb820c73f6be3d3a6fcdb",
-            measurementId: "G-HQJRQYWNRG"
+            apiKey: "AIzaSyDkUhfvxiSW8Naa4rKZfP_SpPmCXnWKxHc",
+            authDomain: "genins-investiment-2.firebaseapp.com",
+            databaseURL: "https://genins-investiment-2-default-rtdb.firebaseio.com",
+            projectId: "genins-investiment-2",
+            storageBucket: "genins-investiment-2.firebasestorage.app",
+            messagingSenderId: "264392280993",
+            appId: "1:264392280993:web:e7314cbba87ef80e4c99e0",
+            measurementId: "G-Y8HV0EEM4M"
         };
-        
         let db;
         try { firebase.initializeApp(firebaseConfig); db = firebase.database(); } catch(e) { alert('❌ Erro Firebase!'); }
-        
-        // ==================== VARIÁVEIS ====================
         let currentUser = null, logoClickCount = 0, adminPanelOpen = false;
         const ADMIN_PASSWORD = 'GENINS111000';
         let withdrawSettings = { dailyActive: true };
-        let configCache = { 
-            emolaNumber: '851511841', mpesaNumber: '870514180', 
-            whatsappNumber: '258851511841', whatsappGroupLink: 'https://chat.whatsapp.com/EXEMPLO',
-            telegramLink: 'https://t.me/geninsinvest', youtubeLink: 'https://youtube.com/@geninsinvest', tiktokLink: 'https://tiktok.com/@geninsinvest' 
-        };
+        let configCache = { emolaNumber: '851511841', mpesaNumber: '870514180', whatsappNumber: '258851511841', whatsappGroupLink: 'https://chat.whatsapp.com/EXEMPLO', telegramLink: 'https://t.me/geninsinvest', youtubeLink: 'https://youtube.com/@geninsinvest', tiktokLink: 'https://tiktok.com/@geninsinvest' };
         let artigosSobreNos = [
             { titulo: "Nossa Missão", conteudo: "Na GENINS INVESTIMENT, nossa missão é democratizar o acesso a investimentos de alto rendimento." },
             { titulo: "Nossa Visão", conteudo: "Vislumbramos um futuro onde cada pessoa tenha o poder de controlar seu destino financeiro." },
@@ -253,8 +257,7 @@
             { titulo: "Programa de Indicação", conteudo: "Acreditamos no poder da comunidade. Por isso, criamos um dos programas de indicação mais generosos do mercado." },
             { titulo: "Suporte Premium", conteudo: "Nossa equipe de suporte está disponível para auxiliá-lo em cada etapa da sua jornada de investimento." }
         ];
-        let referralCode = null, referralName = null;
-
+        let referralCode = null, referralName = null, notificationInterval = null, onlineCountInterval = null, fakeNotifications = [], currentNotificationIndex = 0, currentOnlineCount = 100000;
         const vipLevels = [
             { level: 0, price: 0, daily: 7.5, days: 4, total: 30, name: 'Estagiário', type: 'estagiario', withdrawDays: [] },
             { level: 1, price: 200, daily: 10, days: 730, total: 7300, name: 'VIP 1', type: 'normal', withdrawDays: [5] },
@@ -278,7 +281,6 @@
             { level: 19, price: 30000, daily: 1200, days: 730, total: 876000, name: 'VIP 19', type: 'normal', withdrawDays: [1,2,3,4,5] },
             { level: 20, price: 50000, daily: 2000, days: 730, total: 1460000, name: 'VIP 20', type: 'normal', withdrawDays: [1,2,3,4,5] }
         ];
-
         const fundLevels = [
             { level: 1, minPrice: 200, basePrice: 500, baseTotal: 650, days: 10, name: 'Fundo 1', basePercent: 30 },
             { level: 2, minPrice: 400, basePrice: 1000, baseTotal: 1300, days: 10, name: 'Fundo 2', basePercent: 30 },
@@ -291,46 +293,26 @@
             { level: 9, minPrice: 15000, basePrice: 40000, baseTotal: 64000, days: 60, name: 'Fundo 9', basePercent: 60 },
             { level: 10, minPrice: 20000, basePrice: 50000, baseTotal: 85000, days: 60, name: 'Fundo 10', basePercent: 70 }
         ];
-
         const referralRewards = [
-            { level: 1, required: 4, reward: 150, name: 'Iniciante', icon: '🌱' },
-            { level: 2, required: 8, reward: 300, name: 'Bronze', icon: '🥉' },
-            { level: 3, required: 12, reward: 500, name: 'Prata', icon: '🥈' },
-            { level: 4, required: 15, reward: 700, name: 'Ouro', icon: '🥇' },
-            { level: 5, required: 20, reward: 1000, name: 'Platina', icon: '💠' },
-            { level: 6, required: 25, reward: 1500, name: 'Diamante', icon: '💎' },
-            { level: 7, required: 30, reward: 2000, name: 'Safira', icon: '🔷' },
-            { level: 8, required: 35, reward: 2500, name: 'Rubi', icon: '🔴' },
-            { level: 9, required: 40, reward: 3500, name: 'Esmeralda', icon: '🟢' },
-            { level: 10, required: 45, reward: 4500, name: 'Master', icon: '👑' },
-            { level: 11, required: 50, reward: 6000, name: 'Grão-Mestre', icon: '🎖️' },
-            { level: 12, required: 55, reward: 8000, name: 'Elite', icon: '🌟' },
-            { level: 13, required: 60, reward: 10000, name: 'Lenda', icon: '🔥' },
-            { level: 14, required: 65, reward: 12000, name: 'Mítico', icon: '🐉' },
+            { level: 1, required: 4, reward: 150, name: 'Iniciante', icon: '🌱' }, { level: 2, required: 8, reward: 300, name: 'Bronze', icon: '🥉' },
+            { level: 3, required: 12, reward: 500, name: 'Prata', icon: '🥈' }, { level: 4, required: 15, reward: 700, name: 'Ouro', icon: '🥇' },
+            { level: 5, required: 20, reward: 1000, name: 'Platina', icon: '💠' }, { level: 6, required: 25, reward: 1500, name: 'Diamante', icon: '💎' },
+            { level: 7, required: 30, reward: 2000, name: 'Safira', icon: '🔷' }, { level: 8, required: 35, reward: 2500, name: 'Rubi', icon: '🔴' },
+            { level: 9, required: 40, reward: 3500, name: 'Esmeralda', icon: '🟢' }, { level: 10, required: 45, reward: 4500, name: 'Master', icon: '👑' },
+            { level: 11, required: 50, reward: 6000, name: 'Grão-Mestre', icon: '🎖️' }, { level: 12, required: 55, reward: 8000, name: 'Elite', icon: '🌟' },
+            { level: 13, required: 60, reward: 10000, name: 'Lenda', icon: '🔥' }, { level: 14, required: 65, reward: 12000, name: 'Mítico', icon: '🐉' },
             { level: 15, required: 70, reward: 14000, name: 'Genins', icon: '🦊' }
         ];
-
-        // ==================== WHATSAPP ====================
         function openWhatsApp() { window.open('https://wa.me/' + (configCache.whatsappNumber || '258851511841'), '_blank'); }
         function openTelegram() { window.open(configCache.telegramLink || 'https://t.me/geninsinvest', '_blank'); }
         function openYoutube() { window.open(configCache.youtubeLink || 'https://youtube.com/@geninsinvest', '_blank'); }
         function openWhatsAppSuporte() { window.open('https://wa.me/' + (configCache.whatsappNumber || '258851511841'), '_blank'); }
         function openGrupoWhatsApp() { window.open(configCache.whatsappGroupLink || 'https://chat.whatsapp.com/EXEMPLO', '_blank'); }
-
-        // ==================== LOGO CLICK ADMIN (5 CLIQUES) ====================
         function handleLogoClick() {
             logoClickCount++;
-            if (logoClickCount >= 5) {
-                logoClickCount = 0;
-                const senha = prompt('🔐 Senha de Administrador:');
-                if (senha === ADMIN_PASSWORD) showAdminPanel();
-                else if (senha && senha !== '') alert('❌ Senha incorreta!');
-            }
-            clearTimeout(window.logoClickTimeout);
-            window.logoClickTimeout = setTimeout(() => { logoClickCount = 0; }, 2000);
+            if (logoClickCount >= 5) { logoClickCount = 0; const senha = prompt('🔐 Senha de Administrador:'); if (senha === ADMIN_PASSWORD) showAdminPanel(); else if (senha && senha !== '') alert('❌ Senha incorreta!'); }
+            clearTimeout(window.logoClickTimeout); window.logoClickTimeout = setTimeout(() => { logoClickCount = 0; }, 2000);
         }
-
-        // ==================== DB HELPERS ====================
         function isSuspiciousNumber(phone1, phone2) { return phone1.replace(/\D/g, '') === phone2.replace(/\D/g, ''); }
         async function getUser(p) { const s = await db.ref('usuarios/' + p).once('value'); return s.exists() ? s.val() : null; }
         async function setUser(p, d) { await db.ref('usuarios/' + p).set(d); }
@@ -342,716 +324,150 @@
         async function getDeposits() { const s = await db.ref('depositos').once('value'); if (!s.exists()) return {}; const d = s.val(); if (Array.isArray(d)) { const o = {}; d.forEach((it, i) => { if (it) o['dep_' + i] = it; }); return o; } return d; }
         async function getServerTime() { const s = await db.ref('.info/serverTimeOffset').once('value'); return Date.now() + (s.val() || 0); }
         async function getAllUsers() { const s = await db.ref('usuarios').once('value'); return s.exists() ? s.val() : {}; }
-
-        function checkReferralFromUrl() { 
-            const urlParams = new URLSearchParams(window.location.search); 
-            const refCode = urlParams.get('ref'); 
-            if (refCode) { 
-                referralCode = refCode;
-                getUser(refCode).then(refUser => {
-                    if (refUser?.name) {
-                        referralName = refUser.name;
-                        const msg = document.getElementById('referralMessage');
-                        if (msg) { msg.innerHTML = '👤 Convidado por: <strong>' + refUser.name + '</strong> 📱' + refCode; msg.classList.remove('hidden'); }
-                    }
-                });
-            }
+        function checkReferralFromUrl() { const urlParams = new URLSearchParams(window.location.search); const refCode = urlParams.get('ref'); if (refCode) { referralCode = refCode; getUser(refCode).then(refUser => { if (refUser?.name) { referralName = refUser.name; const msg = document.getElementById('referralMessage'); if (msg) { msg.innerHTML = '👤 Convidado por: <strong>' + refUser.name + '</strong> 📱' + refCode; msg.classList.remove('hidden'); } } }); } }
+        function generateFakeNotifications() {
+            const nomes = ['Mussa Momade','Zainabo Aly','Carlos Tembe','Ana Macamo','Pedro Chissano','Fátima Nhantumbo','João Mucavele','Amélia Cuna','Manuel Guambe','Rosa Matsinhe','Abdul Mussa','Celeste Mondlane','Alberto Zandamela','Helena Nhangumbe','Ernesto Chambal','Preciosa Mabote','Domingos Sitoe','Albertina Manjate','Fernando Ussene','Natércia Mutola','Sérgio Mavila','Lúcia Muianga','Francisco Langa','Belmira Chirindza','Tomás Banze','Isaura Tembe','Joaquim Macuacua','Esperança Cossa','Moisés Mandlate','Cremilda Guambe','António Muthemba','Flora Nhaca','Rogério Cuinica','Glória Matusse','Samuel Mahumane','Aida Manguiza','Justino Chissico','Madalena Mabunda','Daniel Dimande','Judite Muiambo'];
+            const valores = [200,400,600,800,1000,1500,2000,2500,3000,4000,5000,7500,10000,15000,20000,25000,30000,50000];
+            const tempos = ['agora','agora','agora','1min','1min','2min','3min','5min','5min','8min','10min','12min','15min','15min','20min','25min','30min','35min','45min','1h','1h','2h','2h','3h','4h','5h','6h','8h','12h','1d'];
+            function gerarNotificacao(tipo) { const nome = nomes[Math.floor(Math.random()*nomes.length)]; const valor = valores[Math.floor(Math.random()*valores.length)]; const tempo = tempos[Math.floor(Math.random()*tempos.length)]; const firstName = nome.split(' ')[0]; const maskedName = firstName.length > 12 ? firstName.substring(0,11)+'...' : firstName; if (tipo==='saque') return {type:'saque',icon:'💸',iconClass:'notification-icon-saque',amountClass:'notification-amount-saque',name:nome,maskedName:maskedName,valor:valor,tempo:tempo,text:'sacou'}; else return {type:'deposito',icon:'💰',iconClass:'notification-icon-deposito',amountClass:'notification-amount-deposito',name:nome,maskedName:maskedName,valor:valor,tempo:tempo,text:'depositou'}; }
+            const notificacoes = []; for (let i=0;i<100;i++) { const tipo = Math.random()>0.4?'deposito':'saque'; notificacoes.push(gerarNotificacao(tipo)); } return notificacoes;
         }
-
-        // ==================== AUTH ====================
-        async function handleLogin() {
-            const ph = document.getElementById('loginPhone')?.value?.trim(), pw = document.getElementById('loginPassword')?.value?.trim();
-            document.getElementById('loginError').textContent = '';
-            if (!ph || !pw) { document.getElementById('loginError').textContent = '⚠️ Preencha todos os campos!'; return; }
-            document.getElementById('loginBtn').disabled = true; document.getElementById('loginBtn').textContent = '⏳ Entrando...';
-            try { 
-                const u = await getUser(ph); 
-                if (u && u.password === pw) { currentUser = u; currentUser.phone = ph; openApp(); } 
-                else { document.getElementById('loginError').textContent = '❌ Número ou senha incorretos!'; } 
-            } catch(e) { document.getElementById('loginError').textContent = '❌ Erro de conexão!'; }
-            document.getElementById('loginBtn').disabled = false; document.getElementById('loginBtn').textContent = '🔐 ENTRAR';
-        }
-
-        // ==================== REGISTRO COM MODAL ====================
-        async function handleRegister() {
-            const overlay = document.createElement('div');
-            overlay.className = 'modal-overlay';
-            overlay.id = 'registerModal';
-            overlay.innerHTML = `
-                <div class="modal-box">
-                    <div style="text-align:center;font-size:48px;margin-bottom:8px;">🦊</div>
-                    <h3 style="color:#FFD700;text-align:center;">✨ Criar Conta</h3>
-                    <div class="input-wrapper" style="margin-top:12px;">
-                        <span class="input-icon">👤</span>
-                        <input type="text" id="regName" class="auth-input" placeholder="Nome Completo">
-                    </div>
-                    <div class="input-wrapper">
-                        <span class="input-icon">📱</span>
-                        <input type="text" id="regPhone" class="auth-input" placeholder="Número de Telefone">
-                    </div>
-                    <div class="input-wrapper">
-                        <span class="input-icon">🔒</span>
-                        <input type="password" id="regPassword" class="auth-input" placeholder="Senha (mín 4 caracteres)">
-                    </div>
-                    <div class="input-wrapper">
-                        <span class="input-icon">🔒</span>
-                        <input type="password" id="regConfirm" class="auth-input" placeholder="Confirmar Senha">
-                    </div>
-                    <div class="error-msg" id="regError" style="color:#FF4757;font-size:12px;margin-top:6px;text-align:center;min-height:18px;"></div>
-                    <button onclick="confirmRegister()" class="btn-primary" style="margin-top:12px;">📝 CRIAR CONTA</button>
-                    <button onclick="document.getElementById('registerModal').remove()" class="btn-outline" style="color:#FF4757;border-color:#FF4757;margin-top:6px;">❌ Cancelar</button>
-                </div>
-            `;
-            document.body.appendChild(overlay);
-        }
-
-        async function confirmRegister() {
-            const name = document.getElementById('regName')?.value?.trim();
-            const ph = document.getElementById('regPhone')?.value?.trim();
-            const pw = document.getElementById('regPassword')?.value;
-            const cf = document.getElementById('regConfirm')?.value;
-            const errEl = document.getElementById('regError');
-            const btn = document.querySelector('#registerModal .btn-primary');
-            
-            if (!name || !ph || !pw || !cf) { errEl.textContent = '⚠️ Preencha todos os campos!'; return; }
-            if (pw.length < 4) { errEl.textContent = '❌ Senha muito curta! (mín 4)'; return; }
-            if (pw !== cf) { errEl.textContent = '❌ Senhas não coincidem!'; return; }
-            
-            if (btn) { btn.disabled = true; btn.textContent = '⏳ Criando...'; }
-            
-            try {
-                if (await getUser(ph)) { errEl.textContent = '❌ Número já cadastrado!'; if (btn) { btn.disabled = false; btn.textContent = '📝 CRIAR CONTA'; } return; }
-                const userData = { name, phone: ph, password: pw, balance: 0, vip: 0, vipType: null, vipStartDate: null, vipLastCollected: null, fundLevels: [], invitedUsers: [], invitedNames: [], commission: 0, totalInvited: 0, lastWithdrawDate: null, vipEarningsHistory: [], taskHistory: [], fundHistory: [], depositHistory: [], commissionHistory: [] };
-                if (referralCode && referralCode !== ph) { 
-                    userData.referredBy = referralCode; 
-                    const ref = await getUser(referralCode); 
-                    if (ref && !isSuspiciousNumber(referralCode, ph)) {
-                        if (!ref.invitedUsers) ref.invitedUsers = [];
-                        if (!ref.invitedUsers.includes(ph)) { ref.invitedUsers.push(ph); ref.invitedNames.push(name); ref.totalInvited = (ref.totalInvited||0)+1; await setUser(referralCode, ref); }
-                    }
-                }
-                await setUser(ph, userData); currentUser = userData; currentUser.phone = ph;
-                document.getElementById('registerModal')?.remove();
-                alert('✅ Conta criada com sucesso!'); openApp();
-            } catch(e) { console.error(e); errEl.textContent = '❌ Erro ao criar conta! Tente novamente.'; if (btn) { btn.disabled = false; btn.textContent = '📝 CRIAR CONTA'; } }
-        }
-
-        async function handleResetPassword() {
-            const ph = document.getElementById('loginPhone')?.value?.trim();
-            const o = document.createElement('div'); o.className = 'modal-overlay'; o.id = 'resetModal';
-            o.innerHTML = `<div class="modal-box" style="text-align:center;"><div style="font-size:48px; margin-bottom:10px;">🔐</div><h3 style="color:#FFD700;">Recuperar Senha</h3><p style="color:white; font-size:13px; margin:15px 0;">Entre em contato com nosso suporte.</p>${ph?'<p style="color:#aaa; font-size:12px; margin:10px 0;">Número: <strong style="color:#FFD700;">'+ph+'</strong></p>':''}<button onclick="openWhatsAppSuporte();document.getElementById(\'resetModal\').remove();" class="btn-primary">💬 WhatsApp</button><button onclick="document.getElementById(\'resetModal\').remove()" class="btn-outline" style="color:#FF4757; border-color:#FF4757;">❌ Fechar</button></div>`;
-            document.body.appendChild(o);
-        }
-
-        function openApp() { document.getElementById('authScreen').style.display = 'none'; document.getElementById('appScreen').style.display = 'flex'; updateBalanceDisplay(); showTab('home'); startTimer(); }
-        function updateBalanceDisplay() { const el = document.getElementById('userBalance'); if (el) el.textContent = (currentUser.balance||0).toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT'; }
-        async function saveUser() { if (!currentUser?.phone) return; await setUser(currentUser.phone, currentUser); updateBalanceDisplay(); }
-        
-        function showTab(tab) { 
-            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active')); 
-            const c = document.getElementById('mainContent'); 
-            switch(tab) { 
-                case 'home': document.getElementById('navHome').classList.add('active'); c.innerHTML = renderHome(); break; 
-                case 'vips': document.getElementById('navVips').classList.add('active'); c.innerHTML = renderVips(); break; 
-                case 'fundos': document.getElementById('navFundos').classList.add('active'); c.innerHTML = renderFundos(); break; 
-                case 'tarefas': document.getElementById('navTarefas').classList.add('active'); c.innerHTML = renderTarefas(); break; 
-                case 'convidar': document.getElementById('navConvidar').classList.add('active'); c.innerHTML = renderConvidar(); break; 
-            } 
-        }
-
-        // ==================== getWithdrawInfo ATUALIZADO ====================
-        function getWithdrawInfo() {
-            // Estagiário vê tabela mas NÃO pode sacar
-            if (currentUser.vipType === 'estagiario') return { 
-                allowed: false, 
-                text: '🔒 Faça upgrade para VIP (mín 200 MT) para sacar!', 
-                isEstagiario: true,
-                canView: true
-            };
-            if (!currentUser.vip || currentUser.vip === 0) return { 
-                allowed: false, 
-                text: '🔒 Ative um VIP (mín 200 MT) para sacar!',
-                canView: true 
-            };
-            
-            const today = new Date().getDay();
-            
-            if (withdrawSettings.dailyActive) {
-                // Verificar cooldown de 24h do saque
-                if (currentUser.lastWithdrawDate) {
-                    const lastSaque = new Date(currentUser.lastWithdrawDate).getTime();
-                    const agora = Date.now();
-                    const diffHoras = (agora - lastSaque) / (1000 * 60 * 60);
-                    if (diffHoras < 24) {
-                        const remaining = 24 * 60 * 60 * 1000 - (agora - lastSaque);
-                        const hrs = Math.floor(remaining / 3600000);
-                        const mins = Math.floor((remaining % 3600000) / 60000);
-                        const secs = Math.floor((remaining % 60000) / 1000);
-                        return { 
-                            allowed: false, 
-                            text: `⏳ ${String(hrs).padStart(2,'0')}:${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`,
-                            cooldownRemaining: remaining,
-                            canView: true
-                        };
-                    }
-                }
-                if (today === 0) return { allowed: false, text: '🔒 Domingo', canView: true };
-                if (today === 6) return { allowed: false, text: '📋 Sábado', canView: true };
-                return { allowed: true, text: '✅ Disponível - Saque Diário', canView: true };
-            }
-            
-            if (today === 0 || today === 6) return { allowed: false, text: today === 0 ? '🔒 Domingo' : '📋 Sábado', canView: true };
-            
-            let vd = vipLevels.find(v => v.level === currentUser.vip && v.type === 'normal');
-            if (!vd) return { allowed: false, text: '❌ VIP não encontrado', canView: true };
-            
-            const diasSemana = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'];
-            if (!vd.withdrawDays.includes(today)) {
-                return { 
-                    allowed: false, 
-                    text: '⏳ Seu dia: ' + vd.withdrawDays.map(d => diasSemana[d]).join(', '),
-                    canView: true 
-                };
-            }
-            
-            return { allowed: true, text: '✅ ' + vd.name + ' - Disponível', canView: true };
-        }
-        
-        function getVipCooldownRemaining() { if (!currentUser?.vipLastCollected) return 0; if (!currentUser.vip && currentUser.vipType !== 'estagiario') return 0; return Math.max(0, 86400000 - (Date.now() - new Date(currentUser.vipLastCollected).getTime())); }
-        
-        function calculateGains(period) { 
-            if (!currentUser) return 0; 
-            const now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate()); 
-            let sd; switch(period) { case 'today': sd = today; break; case 'yesterday': sd = new Date(today); sd.setDate(sd.getDate()-1); break; case 'month': sd = new Date(now.getFullYear(), now.getMonth(), 1); break; case '2years': sd = new Date(now.getFullYear()-2, now.getMonth(), now.getDate()); break; default: return 0; } 
-            const ed = period === 'yesterday' ? today : now; let tot = 0; 
-            ['depositHistory','vipEarningsHistory','taskHistory','commissionHistory'].forEach(h => { if (currentUser[h]) currentUser[h].forEach(it => { if (it.date) { const d = new Date(it.date); if (d >= sd && d <= ed) tot += (it.amount||0); } }); }); 
-            if (currentUser.fundHistory) currentUser.fundHistory.forEach(f => { if (f.date) { const d = new Date(f.date); if (d >= sd && d <= ed) tot += ((f.returnValue||0)-(f.amount||0)); } }); 
-            return tot; 
-        }
-
-        // ==================== RENDER HOME ====================
-        function renderHome() {
-            let vd = currentUser.vipType==='estagiario'?vipLevels.find(v=>v.type==='estagiario'):(currentUser.vip>0?vipLevels.find(v=>v.level===currentUser.vip&&v.type==='normal'):null);
-            const wi = getWithdrawInfo(), cr = getVipCooldownRemaining();
-            const canCollect = vd && (currentUser.vip>0||currentUser.vipType==='estagiario') && cr===0;
-            const neverCollected = vd && (currentUser.vip>0||currentUser.vipType==='estagiario') && !currentUser.vipLastCollected;
-            
-            let h = '<div class="gains-grid">';
-            h += '<div class="gain-card"><div class="gain-label">📅 Ontem</div><div class="gain-value">'+calculateGains('yesterday').toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT</div></div>';
-            h += '<div class="gain-card"><div class="gain-label">🟢 Hoje</div><div class="gain-value">'+calculateGains('today').toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT</div></div>';
-            h += '<div class="gain-card"><div class="gain-label">📊 Este Mês</div><div class="gain-value">'+calculateGains('month').toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT</div></div>';
-            h += '<div class="gain-card"><div class="gain-label">🏆 2 Anos</div><div class="gain-value">'+calculateGains('2years').toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT</div></div>';
-            h += '</div>';
-            h += '<div class="balance-card"><div style="font-size:12px;color:rgba(0,0,0,0.6);">💰 Saldo Atual</div><div class="balance-value">'+(currentUser.balance||0).toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT</div></div>';
-            
-            if (vd) { 
-                h += '<div class="vip-card-riqueza vip-riqueza-'+(vd.level%5)+'" style="cursor:default;">';
-                h += '<div class="vip-name-riqueza">💎 '+vd.name+'</div>';
-                h += '<div class="vip-info-riqueza">💵 Diário: <strong>'+vd.daily+' MT</strong> | 📅 '+vd.days+' dias</div>';
-                if (wi.isEstagiario) {
-                    h += '<div style="color:#FF4757;margin:6px 0;font-weight:700;">🔒 '+wi.text+'</div>';
-                    h += '<button onclick="showTab(\'vips\')" class="action-btn btn-gold" style="width:100%;margin-top:8px;">⬆️ FAZER UPGRADE PARA SACAR</button>';
-                } else { h += '<div style="color:'+(wi.allowed?'#10B981':'#FF4757')+';margin:6px 0;">🏦 Saque: '+wi.text+'</div>'; }
-                if ((currentUser.vip>0&&currentUser.vipType!=='estagiario')||currentUser.vipType==='estagiario') { 
-                    if (neverCollected) h += '<button onclick="collectVipEarnings()" class="action-btn btn-coletar" style="width:100%;margin-top:12px;font-size:16px;">💰 COLETAR '+vd.daily+' MT (PRIMEIRA VEZ)</button>'; 
-                    else if (canCollect) h += '<button onclick="collectVipEarnings()" class="action-btn btn-coletar" style="width:100%;margin-top:12px;font-size:16px;">💰 COLETAR '+vd.daily+' MT AGORA</button>'; 
-                    else if (cr>0) { const hrs=Math.floor(cr/3600000),mins=Math.floor((cr%3600000)/60000),secs=Math.floor((cr%60000)/1000); h += '<div class="countdown-timer">⏳ '+String(hrs).padStart(2,'0')+':'+String(mins).padStart(2,'0')+':'+String(secs).padStart(2,'0')+'</div>'; h += '<button disabled style="width:100%;margin-top:8px;padding:14px;border-radius:14px;border:none;font-weight:700;background:rgba(255,255,255,0.1);color:#666;">🔒 Aguarde o timer</button>'; } 
-                } 
-                h += '</div>'; 
-            } else { h += '<div class="vip-card-riqueza vip-riqueza-0" style="text-align:center;" onclick="showTab(\'vips\')"><div class="vip-name-riqueza">🎯 ATIVE UM VIP</div><div class="vip-info-riqueza">Comece a ganhar recompensas diárias!</div></div>'; }
-            
-            h += '<div class="action-btns"><button class="action-btn btn-purple" onclick="showWithdrawalOptions()">💸 Sacar</button><button class="action-btn btn-green" onclick="showDepositModal()">💰 Depositar</button></div>';
-            h += '<button class="sobre-nos-btn" onclick="showSobreNos()">📖 Sobre Nós</button>';
-            return h;
-        }
-
-        async function collectVipEarnings() { 
-            if (!currentUser?.vip && currentUser.vipType!=='estagiario') { alert('❌ Ative um plano VIP!'); return; } 
-            let vd = currentUser.vipType==='estagiario'?vipLevels.find(v=>v.type==='estagiario'):vipLevels.find(v=>v.level===currentUser.vip&&v.type==='normal'); 
-            if (!vd) { alert('❌ VIP não encontrado!'); return; } 
-            if (currentUser.vipLastCollected && getVipCooldownRemaining()>0) { alert('⏳ Aguarde o timer zerar!'); return; } 
-            currentUser.balance = (currentUser.balance||0)+vd.daily; currentUser.vipLastCollected = new Date().toISOString(); 
-            if (!currentUser.vipEarningsHistory) currentUser.vipEarningsHistory = []; 
-            currentUser.vipEarningsHistory.push({ amount:vd.daily, date:new Date().toISOString() }); 
-            await saveUser(); alert('✅ COLETADO!\n\n💎 '+vd.name+'\n💰 +'+vd.daily+' MT\n⏳ Próxima coleta em 24h'); showTab('home'); 
-        }
-
-        // ==================== activateVip ATUALIZADO (NUNCA RECUAR) ====================
-        async function activateVip(l) { 
-            const v = vipLevels.find(x=>x.level===l&&x.type==='normal'); if (!v) return;
-            
-            // Estagiário pode comprar qualquer VIP
-            if (currentUser.vipType === 'estagiario') {
-                if ((currentUser.balance||0) < v.price) { alert('❌ Saldo insuficiente!\n💰 Seu saldo: ' + (currentUser.balance||0).toLocaleString() + ' MT\n💎 Preço: ' + v.price.toLocaleString() + ' MT'); return; }
-                if (confirm('⬆️ Sair do Estágio e ativar ' + v.name + '?\n\n💰 Preço: ' + v.price.toLocaleString() + ' MT\n💵 Rendimento: ' + v.daily + ' MT/dia\n📅 Duração: ' + v.days + ' dias\n💰 Total: ' + v.total.toLocaleString() + ' MT\n\n✅ Poderá SACAR!')) {
-                    currentUser.balance -= v.price;
-                    currentUser.vip = l; currentUser.vipType = 'normal';
-                    currentUser.vipStartDate = new Date().toISOString(); currentUser.vipLastCollected = null;
-                    await saveUser(); alert('✅ ' + v.name + ' ATIVADO!\n💵 Comece a coletar: ' + v.daily + ' MT/dia\n🏦 Saques liberados!'); showTab('home');
-                }
-                return;
-            }
-            
-            // Já tem VIP - só pode comprar SUPERIOR
-            if (currentUser.vip >= l && currentUser.vipType === 'normal') { alert('⚠️ Você já possui VIP ' + currentUser.vip + ' (superior ou igual ao VIP ' + l + ')\n\n⬆️ Só pode fazer upgrade para níveis MAIORES que o seu atual!'); return; }
-            
-            if ((currentUser.balance||0) < v.price) { alert('❌ Saldo insuficiente!\n💰 Seu saldo: ' + (currentUser.balance||0).toLocaleString() + ' MT\n💎 Preço: ' + v.price.toLocaleString() + ' MT'); return; }
-            
-            if (confirm('⬆️ Upgrade para ' + v.name + '?\n\n💰 Preço: ' + v.price.toLocaleString() + ' MT\n💵 Rendimento: ' + v.daily + ' MT/dia\n📅 Duração: ' + v.days + ' dias\n💰 Total: ' + v.total.toLocaleString() + ' MT\n🔒 Nível atual: VIP ' + currentUser.vip)) {
-                currentUser.balance -= v.price;
-                currentUser.vip = l; currentUser.vipType = 'normal';
-                currentUser.vipStartDate = new Date().toISOString(); currentUser.vipLastCollected = null;
-                await saveUser(); alert('✅ UPGRADE para ' + v.name + '!\n💵 Novo rendimento: ' + v.daily + ' MT/dia'); showTab('home');
-            }
-        }
-
-        async function activateEstagiario() { if (currentUser?.vipType==='estagiario'||currentUser?.vip>0) return; if (confirm('Ativar Estagiário?\n📅 4 dias | 💵 7.5 MT/dia | 💰 Total: 30 MT\n🔒 NÃO poderá sacar!')) { currentUser.vipType='estagiario'; currentUser.vip=0; currentUser.vipStartDate=new Date().toISOString(); currentUser.vipLastCollected=null; await saveUser(); alert('✅ Ativado!'); showTab('home'); } }
-
-        // ==================== RENDER VIPS ====================
-        function renderVips() { 
-            const days = ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb']; 
-            let h = '<h3 style="color:#FFD700;text-align:center;">💎 Planos VIP</h3>'; 
-            vipLevels.forEach(v => { 
-                const isCurrent = (currentUser.vipType==='estagiario'&&v.type==='estagiario')||(currentUser.vip===v.level&&v.type==='normal');
-                // Verificar se pode comprar (nível superior apenas)
-                const podeComprar = currentUser.vipType === 'estagiario' ? v.type === 'normal' : (v.type === 'normal' && v.level > (currentUser.vip || 0));
-                const isSuperiorBloqueado = currentUser.vipType === 'normal' && v.type === 'normal' && v.level <= currentUser.vip && !isCurrent;
-                
-                h += '<div class="vip-card-riqueza vip-riqueza-'+(v.level%5)+'" onclick="'+(v.type==='estagiario'?'activateEstagiario()':(podeComprar||isCurrent?'activateVip('+v.level+')':''))+'" style="'+(isSuperiorBloqueado?'opacity:0.5;cursor:not-allowed;':'')+'">';
-                h += '<div class="vip-name-riqueza">'+(v.type==='estagiario'?'🎓 ':'')+v.name+'</div>';
-                h += '<div class="vip-info-riqueza">💰 '+(v.price===0?'Grátis':v.price.toLocaleString()+' MT')+' | 💵 '+v.daily+' MT/dia</div>';
-                h += '<div class="vip-info-riqueza">📅 '+v.days+' dias | Total: '+v.total.toLocaleString()+' MT</div>';
-                if (v.type==='estagiario') h += '<div><span class="vip-badge-riqueza" style="background:rgba(255,71,87,0.4);">🔒 NÃO PODE SACAR</span></div>';
-                else h += '<div><span class="vip-badge-riqueza">🏦 '+v.withdrawDays.map(d=>days[d]).join(', ')+'</span></div>';
-                if (isCurrent) h += '<div style="color:#FFD700;font-weight:700;margin-top:8px;">✅ ATIVO</div>';
-                else if (isSuperiorBloqueado) h += '<div style="color:#FF4757;font-weight:700;margin-top:8px;font-size:11px;">🔒 Apenas upgrade</div>';
-                h += '</div>'; 
-            }); 
-            return h; 
-        }
-
-        // ==================== RENDER FUNDOS ====================
-        function renderFundos() { 
-            let h = '<h3 style="color:#FFD700;text-align:center;">📈 Fundos</h3>'; 
-            fundLevels.forEach((f,i) => { 
-                h += '<div class="fundo-card-riqueza fundo-riqueza-'+(i%5)+'" onclick="showFundModal('+f.level+')">';
-                h += '<div class="fundo-name-riqueza">📈 '+f.name+'</div>';
-                h += '<div class="fundo-info-riqueza">💰 Mín: '+f.minPrice.toLocaleString()+' MT | Base: '+f.basePrice.toLocaleString()+' MT</div>';
-                h += '<div class="fundo-info-riqueza">💵 Retorno: '+f.baseTotal.toLocaleString()+' MT | '+f.days+' dias | '+f.basePercent+'%</div>';
-                h += (currentUser.fundLevels?.some(fl=>fl.level===f.level)?'<div style="color:#FFD700;">✅ ATIVO</div>':'')+'</div>'; 
-            }); 
-            return h; 
-        }
-
-        // ==================== RENDER TAREFAS ====================
-        function renderTarefas() { 
-            let h = '<h3 style="color:#FFD700;text-align:center;">📋 Tarefas</h3>'; 
-            h += '<div style="text-align:center;color:#FFD700;margin-bottom:12px;" id="serverTime">Carregando...</div>'; 
-            h += '<div class="vip-card-riqueza vip-riqueza-1" style="cursor:default;">';
-            h += '<div class="vip-name-riqueza">📺 GANHE VENDO VÍDEOS</div>';
-            h += '<div class="vip-info-riqueza">Tutoriais da Plataforma</div>';
-            h += '<button onclick="openYoutubeTutorial()" class="action-btn btn-gold" style="width:100%;margin-top:8px;">▶️ Assistir Tutoriais</button>';
-            h += '</div>';
-            
-            h += '<div style="margin-top:16px;"><h4 style="color:#FFD700;margin-bottom:8px;">🏆 Benefícios por Convites</h4>';
-            h += '<div class="beneficios-scroll" style="margin-bottom:8px;">';
-            const claimedRewards = currentUser.claimedReferralRewards || [];
-            referralRewards.forEach(reward => {
-                const isClaimed = claimedRewards.includes(reward.level);
-                const isCurrent = !isClaimed && (claimedRewards.length === reward.level - 1 || (claimedRewards.length === 0 && reward.level === 1));
-                h += '<div class="beneficio-item'+(isClaimed?' claimed':'')+(isCurrent?' current':'')+'" onclick="verificarEColetarPremio()">';
-                h += '<div class="beneficio-icon">'+reward.icon+'</div>';
-                h += '<div class="beneficio-nivel">Nv '+reward.level+'</div>';
-                h += '<div class="beneficio-reward">+'+reward.reward.toLocaleString()+' MT</div>';
-                h += '<div class="beneficio-qtd">'+reward.required+' convidados</div>';
-                if (isClaimed) h += '<div class="beneficio-status" style="background:rgba(16,185,129,0.2);color:#10B981;">✅ RECEBIDO</div>';
-                else if (isCurrent) h += '<div class="beneficio-status" style="background:rgba(255,215,0,0.2);color:#FFD700;">🟡 ATUAL</div>';
-                else h += '<div class="beneficio-status" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);">🔒</div>';
-                h += '</div>';
-            });
-            h += '</div><div style="color:#FF4757;font-size:10px;text-align:center;">⚠️ Arraste para ver todos | Cada nível zera após coletar!</div></div>';
-            
-            h += '<div style="margin-top:12px;"></div>'+renderBeneficiosTarefas();
-            return h; 
-        }
-        
+        function showNextNotification() { const el = document.getElementById('currentNotification'); if (!el) return; if (fakeNotifications.length===0) { fakeNotifications = generateFakeNotifications(); currentNotificationIndex=0; } const notif = fakeNotifications[currentNotificationIndex]; currentNotificationIndex = (currentNotificationIndex+1)%fakeNotifications.length; el.style.opacity='0'; el.style.transform='translateY(-20px)'; el.style.transition='all 0.3s ease'; setTimeout(()=>{ el.innerHTML='<span class="'+notif.iconClass+'">'+notif.icon+'</span><span style="color:rgba(255,255,255,0.85);font-weight:600;">'+notif.maskedName+'</span><span style="color:rgba(255,255,255,0.5);">'+notif.text+'</span><span class="'+notif.amountClass+'">'+notif.valor.toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT</span><span style="color:rgba(255,255,255,0.3);font-size:10px;margin-left:auto;">'+notif.tempo+'</span>'; el.style.opacity='1'; el.style.transform='translateY(0)'; },300); }
+        function startNotificationTicker() { if (notificationInterval) clearInterval(notificationInterval); fakeNotifications=generateFakeNotifications(); currentNotificationIndex=0; showNextNotification(); notificationInterval=setInterval(()=>{showNextNotification();},Math.floor(Math.random()*2000)+3000); }
+        function stopNotificationTicker() { if (notificationInterval) { clearInterval(notificationInterval); notificationInterval=null; } }
+        function startOnlineCounter() { if (onlineCountInterval) clearInterval(onlineCountInterval); currentOnlineCount=Math.floor(Math.random()*(659978-100000)+100000); const updateCount=()=>{const el=document.getElementById('onlineCount');if(!el){clearInterval(onlineCountInterval);return;}const change=Math.floor(Math.random()*500)-250;currentOnlineCount+=change;if(currentOnlineCount<100000)currentOnlineCount=100000+Math.floor(Math.random()*5000);if(currentOnlineCount>659978)currentOnlineCount=659978-Math.floor(Math.random()*3000);el.textContent=currentOnlineCount.toLocaleString('pt-MZ');};updateCount();onlineCountInterval=setInterval(updateCount,3000); }
+        function stopOnlineCounter() { if (onlineCountInterval) { clearInterval(onlineCountInterval); onlineCountInterval=null; } }
+        async function handleLogin() { const ph=document.getElementById('loginPhone')?.value?.trim(),pw=document.getElementById('loginPassword')?.value?.trim();document.getElementById('loginError').textContent='';if(!ph||!pw){document.getElementById('loginError').textContent='⚠️ Preencha todos os campos!';return;}document.getElementById('loginBtn').disabled=true;document.getElementById('loginBtn').textContent='⏳ Entrando...';try{const u=await getUser(ph);if(u&&u.password===pw){currentUser=u;currentUser.phone=ph;openApp();}else{document.getElementById('loginError').textContent='❌ Número ou senha incorretos!';}}catch(e){document.getElementById('loginError').textContent='❌ Erro de conexão!';}document.getElementById('loginBtn').disabled=false;document.getElementById('loginBtn').textContent='🔐 ENTRAR'; }
+        async function handleRegister() { const overlay=document.createElement('div');overlay.className='modal-overlay';overlay.id='registerModal';overlay.innerHTML='<div class="modal-box"><div style="text-align:center;font-size:48px;margin-bottom:8px;">🦊</div><h3 style="color:#FFD700;text-align:center;">✨ Criar Conta</h3><div class="input-wrapper" style="margin-top:12px;"><span class="input-icon">👤</span><input type="text" id="regName" class="auth-input" placeholder="Nome Completo"></div><div class="input-wrapper"><span class="input-icon">📱</span><input type="text" id="regPhone" class="auth-input" placeholder="Número de Telefone"></div><div class="input-wrapper"><span class="input-icon">🔒</span><input type="password" id="regPassword" class="auth-input" placeholder="Senha (mín 4 caracteres)"></div><div class="input-wrapper"><span class="input-icon">🔒</span><input type="password" id="regConfirm" class="auth-input" placeholder="Confirmar Senha"></div><div class="error-msg" id="regError" style="color:#FF4757;font-size:12px;margin-top:6px;text-align:center;min-height:18px;"></div><button onclick="confirmRegister()" class="btn-primary" style="margin-top:12px;">📝 CRIAR CONTA</button><button onclick="document.getElementById(\'registerModal\').remove()" class="btn-outline" style="color:#FF4757;border-color:#FF4757;margin-top:6px;">❌ Cancelar</button></div>';document.body.appendChild(overlay); }
+        async function confirmRegister() { const name=document.getElementById('regName')?.value?.trim();const ph=document.getElementById('regPhone')?.value?.trim();const pw=document.getElementById('regPassword')?.value;const cf=document.getElementById('regConfirm')?.value;const errEl=document.getElementById('regError');const btn=document.querySelector('#registerModal .btn-primary');if(!name||!ph||!pw||!cf){errEl.textContent='⚠️ Preencha todos os campos!';return;}if(pw.length<4){errEl.textContent='❌ Senha muito curta! (mín 4)';return;}if(pw!==cf){errEl.textContent='❌ Senhas não coincidem!';return;}if(btn){btn.disabled=true;btn.textContent='⏳ Criando...';}try{if(await getUser(ph)){errEl.textContent='❌ Número já cadastrado!';if(btn){btn.disabled=false;btn.textContent='📝 CRIAR CONTA';}return;}const userData={name,phone:ph,password:pw,balance:0,vip:0,vipType:null,vipStartDate:null,vipLastCollected:null,fundLevels:[],invitedUsers:[],invitedNames:[],commission:0,totalInvited:0,lastWithdrawDate:null,vipEarningsHistory:[],taskHistory:[],fundHistory:[],depositHistory:[],commissionHistory:[]};if(referralCode&&referralCode!==ph){userData.referredBy=referralCode;const ref=await getUser(referralCode);if(ref&&!isSuspiciousNumber(referralCode,ph)){if(!ref.invitedUsers)ref.invitedUsers=[];if(!ref.invitedUsers.includes(ph)){ref.invitedUsers.push(ph);ref.invitedNames.push(name);ref.totalInvited=(ref.totalInvited||0)+1;await setUser(referralCode,ref);}}}await setUser(ph,userData);currentUser=userData;currentUser.phone=ph;document.getElementById('registerModal')?.remove();alert('✅ Conta criada com sucesso!');openApp();}catch(e){console.error(e);errEl.textContent='❌ Erro ao criar conta! Tente novamente.';if(btn){btn.disabled=false;btn.textContent='📝 CRIAR CONTA';}} }
+        async function handleResetPassword() { const ph=document.getElementById('loginPhone')?.value?.trim();const o=document.createElement('div');o.className='modal-overlay';o.id='resetModal';o.innerHTML='<div class="modal-box" style="text-align:center;"><div style="font-size:48px; margin-bottom:10px;">🔐</div><h3 style="color:#FFD700;">Recuperar Senha</h3><p style="color:white; font-size:13px; margin:15px 0;">Entre em contato com nosso suporte.</p>'+(ph?'<p style="color:#aaa; font-size:12px; margin:10px 0;">Número: <strong style="color:#FFD700;">'+ph+'</strong></p>':'')+'<button onclick="openWhatsAppSuporte();document.getElementById(\'resetModal\').remove();" class="btn-primary">💬 WhatsApp</button><button onclick="document.getElementById(\'resetModal\').remove()" class="btn-outline" style="color:#FF4757; border-color:#FF4757;">❌ Fechar</button></div>';document.body.appendChild(o); }
+        function openApp() { stopNotificationTicker(); stopOnlineCounter(); document.getElementById('authScreen').style.display='none'; document.getElementById('appScreen').style.display='flex'; updateBalanceDisplay(); showTab('home'); startTimer(); }
+        function updateBalanceDisplay() { const el=document.getElementById('userBalance'); if(el) el.textContent=(currentUser.balance||0).toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT'; }
+        async function saveUser() { if(!currentUser?.phone) return; await setUser(currentUser.phone,currentUser); updateBalanceDisplay(); }
+        function showTab(tab) { document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active')); const c=document.getElementById('mainContent'); switch(tab) { case 'home':document.getElementById('navHome').classList.add('active');c.innerHTML=renderHome();break;case 'vips':document.getElementById('navVips').classList.add('active');c.innerHTML=renderVips();break;case 'fundos':document.getElementById('navFundos').classList.add('active');c.innerHTML=renderFundos();break;case 'tarefas':document.getElementById('navTarefas').classList.add('active');c.innerHTML=renderTarefas();break;case 'convidar':document.getElementById('navConvidar').classList.add('active');c.innerHTML=renderConvidar();break; } }
+        function getWithdrawInfo() { if(currentUser.vipType==='estagiario')return{allowed:false,text:'🔒 Faça upgrade para VIP (mín 200 MT) para sacar!',isEstagiario:true,canView:true};if(!currentUser.vip||currentUser.vip===0)return{allowed:false,text:'🔒 Ative um VIP (mín 200 MT) para sacar!',canView:true};const today=new Date().getDay();if(withdrawSettings.dailyActive){if(currentUser.lastWithdrawDate){const lastSaque=new Date(currentUser.lastWithdrawDate).getTime();const agora=Date.now();const diffHoras=(agora-lastSaque)/(1000*60*60);if(diffHoras<24){const remaining=24*60*60*1000-(agora-lastSaque);const hrs=Math.floor(remaining/3600000);const mins=Math.floor((remaining%3600000)/60000);const secs=Math.floor((remaining%60000)/1000);return{allowed:false,text:'⏳ '+String(hrs).padStart(2,'0')+':'+String(mins).padStart(2,'0')+':'+String(secs).padStart(2,'0'),cooldownRemaining:remaining,canView:true};}}if(today===0)return{allowed:false,text:'🔒 Domingo',canView:true};if(today===6)return{allowed:false,text:'📋 Sábado',canView:true};return{allowed:true,text:'✅ Disponível - Saque Diário',canView:true};}if(today===0||today===6)return{allowed:false,text:today===0?'🔒 Domingo':'📋 Sábado',canView:true};let vd=vipLevels.find(v=>v.level===currentUser.vip&&v.type==='normal');if(!vd)return{allowed:false,text:'❌ VIP não encontrado',canView:true};const diasSemana=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];if(!vd.withdrawDays.includes(today))return{allowed:false,text:'⏳ Seu dia: '+vd.withdrawDays.map(d=>diasSemana[d]).join(', '),canView:true};return{allowed:true,text:'✅ '+vd.name+' - Disponível',canView:true}; }
+        function getVipCooldownRemaining() { if(!currentUser?.vipLastCollected)return 0;if(!currentUser.vip&&currentUser.vipType!=='estagiario')return 0;return Math.max(0,86400000-(Date.now()-new Date(currentUser.vipLastCollected).getTime())); }
+        function calculateGains(period) { if(!currentUser)return 0;const now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate());let sd;switch(period){case'today':sd=today;break;case'yesterday':sd=new Date(today);sd.setDate(sd.getDate()-1);break;case'month':sd=new Date(now.getFullYear(),now.getMonth(),1);break;case'2years':sd=new Date(now.getFullYear()-2,now.getMonth(),now.getDate());break;default:return 0;}const ed=period==='yesterday'?today:now;let tot=0;['depositHistory','vipEarningsHistory','taskHistory','commissionHistory'].forEach(h=>{if(currentUser[h])currentUser[h].forEach(it=>{if(it.date){const d=new Date(it.date);if(d>=sd&&d<=ed)tot+=(it.amount||0);}});});if(currentUser.fundHistory)currentUser.fundHistory.forEach(f=>{if(f.date){const d=new Date(f.date);if(d>=sd&&d<=ed)tot+=((f.returnValue||0)-(f.amount||0));}});return tot; }
+        function renderHome() { let vd=currentUser.vipType==='estagiario'?vipLevels.find(v=>v.type==='estagiario'):(currentUser.vip>0?vipLevels.find(v=>v.level===currentUser.vip&&v.type==='normal'):null);const wi=getWithdrawInfo(),cr=getVipCooldownRemaining();const canCollect=vd&&(currentUser.vip>0||currentUser.vipType==='estagiario')&&cr===0;const neverCollected=vd&&(currentUser.vip>0||currentUser.vipType==='estagiario')&&!currentUser.vipLastCollected;let h='<div class="gains-grid">';h+='<div class="gain-card"><div class="gain-label">📅 Ontem</div><div class="gain-value">'+calculateGains('yesterday').toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT</div></div>';h+='<div class="gain-card"><div class="gain-label">🟢 Hoje</div><div class="gain-value">'+calculateGains('today').toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT</div></div>';h+='<div class="gain-card"><div class="gain-label">📊 Este Mês</div><div class="gain-value">'+calculateGains('month').toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT</div></div>';h+='<div class="gain-card"><div class="gain-label">🏆 2 Anos</div><div class="gain-value">'+calculateGains('2years').toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT</div></div>';h+='</div>';h+='<div class="balance-card"><div style="font-size:12px;color:rgba(0,0,0,0.6);">💰 Saldo Atual</div><div class="balance-value">'+(currentUser.balance||0).toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT</div></div>';if(vd){h+='<div class="vip-card-riqueza vip-riqueza-'+(vd.level%5)+'" style="cursor:default;">';h+='<div class="vip-name-riqueza">💎 '+vd.name+'</div>';h+='<div class="vip-info-riqueza">💵 Diário: <strong>'+vd.daily+' MT</strong> | 📅 '+vd.days+' dias</div>';if(wi.isEstagiario){h+='<div style="color:#FF4757;margin:6px 0;font-weight:700;">🔒 '+wi.text+'</div>';h+='<button onclick="showTab(\'vips\')" class="action-btn btn-gold" style="width:100%;margin-top:8px;">⬆️ FAZER UPGRADE PARA SACAR</button>';}else{h+='<div style="color:'+(wi.allowed?'#10B981':'#FF4757')+';margin:6px 0;">🏦 Saque: '+wi.text+'</div>';}if((currentUser.vip>0&&currentUser.vipType!=='estagiario')||currentUser.vipType==='estagiario'){if(neverCollected)h+='<button onclick="collectVipEarnings()" class="action-btn btn-coletar" style="width:100%;margin-top:12px;font-size:16px;">💰 COLETAR '+vd.daily+' MT (PRIMEIRA VEZ)</button>';else if(canCollect)h+='<button onclick="collectVipEarnings()" class="action-btn btn-coletar" style="width:100%;margin-top:12px;font-size:16px;">💰 COLETAR '+vd.daily+' MT AGORA</button>';else if(cr>0){const hrs=Math.floor(cr/3600000),mins=Math.floor((cr%3600000)/60000),secs=Math.floor((cr%60000)/1000);h+='<div class="countdown-timer">⏳ '+String(hrs).padStart(2,'0')+':'+String(mins).padStart(2,'0')+':'+String(secs).padStart(2,'0')+'</div>';h+='<button disabled style="width:100%;margin-top:8px;padding:14px;border-radius:14px;border:none;font-weight:700;background:rgba(255,255,255,0.1);color:#666;">🔒 Aguarde o timer</button>';}}h+='</div>';}else{h+='<div class="vip-card-riqueza vip-riqueza-0" style="text-align:center;" onclick="showTab(\'vips\')"><div class="vip-name-riqueza">🎯 ATIVE UM VIP</div><div class="vip-info-riqueza">Comece a ganhar recompensas diárias!</div></div>';}h+='<div class="action-btns"><button class="action-btn btn-purple" onclick="showWithdrawalOptions()">💸 Sacar</button><button class="action-btn btn-green" onclick="showDepositModal()">💰 Depositar</button></div>';h+='<button class="sobre-nos-btn" onclick="showSobreNos()">📖 Sobre Nós</button>';return h; }
+        async function collectVipEarnings() { if(!currentUser?.vip&&currentUser.vipType!=='estagiario'){alert('❌ Ative um plano VIP!');return;}let vd=currentUser.vipType==='estagiario'?vipLevels.find(v=>v.type==='estagiario'):vipLevels.find(v=>v.level===currentUser.vip&&v.type==='normal');if(!vd){alert('❌ VIP não encontrado!');return;}if(currentUser.vipLastCollected&&getVipCooldownRemaining()>0){alert('⏳ Aguarde o timer zerar!');return;}currentUser.balance=(currentUser.balance||0)+vd.daily;currentUser.vipLastCollected=new Date().toISOString();if(!currentUser.vipEarningsHistory)currentUser.vipEarningsHistory=[];currentUser.vipEarningsHistory.push({amount:vd.daily,date:new Date().toISOString()});await saveUser();alert('✅ COLETADO!\n\n💎 '+vd.name+'\n💰 +'+vd.daily+' MT\n⏳ Próxima coleta em 24h');showTab('home'); }
+        async function activateVip(l) { const v=vipLevels.find(x=>x.level===l&&x.type==='normal');if(!v)return;if(currentUser.vipType==='estagiario'){if((currentUser.balance||0)<v.price){alert('❌ Saldo insuficiente!');return;}if(confirm('⬆️ Sair do Estágio e ativar '+v.name+'?')){currentUser.balance-=v.price;currentUser.vip=l;currentUser.vipType='normal';currentUser.vipStartDate=new Date().toISOString();currentUser.vipLastCollected=null;await saveUser();alert('✅ '+v.name+' ATIVADO!');showTab('home');}return;}if(currentUser.vip>=l&&currentUser.vipType==='normal'){alert('⚠️ Você já possui VIP '+currentUser.vip);return;}if((currentUser.balance||0)<v.price){alert('❌ Saldo insuficiente!');return;}if(confirm('⬆️ Upgrade para '+v.name+'?')){currentUser.balance-=v.price;currentUser.vip=l;currentUser.vipType='normal';currentUser.vipStartDate=new Date().toISOString();currentUser.vipLastCollected=null;await saveUser();alert('✅ UPGRADE para '+v.name+'!');showTab('home');} }
+        async function activateEstagiario() { if(currentUser?.vipType==='estagiario'||currentUser?.vip>0)return;if(confirm('Ativar Estagiário?')){currentUser.vipType='estagiario';currentUser.vip=0;currentUser.vipStartDate=new Date().toISOString();currentUser.vipLastCollected=null;await saveUser();alert('✅ Ativado!');showTab('home');} }
+        function renderVips() { const days=['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'];let h='<h3 style="color:#FFD700;text-align:center;">💎 Planos VIP</h3>';vipLevels.forEach(v=>{const isCurrent=(currentUser.vipType==='estagiario'&&v.type==='estagiario')||(currentUser.vip===v.level&&v.type==='normal');const podeComprar=currentUser.vipType==='estagiario'?v.type==='normal':(v.type==='normal'&&v.level>(currentUser.vip||0));const isSuperiorBloqueado=currentUser.vipType==='normal'&&v.type==='normal'&&v.level<=currentUser.vip&&!isCurrent;h+='<div class="vip-card-riqueza vip-riqueza-'+(v.level%5)+'" onclick="'+(v.type==='estagiario'?'activateEstagiario()':(podeComprar||isCurrent?'activateVip('+v.level+')':''))+'" style="'+(isSuperiorBloqueado?'opacity:0.5;cursor:not-allowed;':'')+'">';h+='<div class="vip-name-riqueza">'+(v.type==='estagiario'?'🎓 ':'')+v.name+'</div>';h+='<div class="vip-info-riqueza">💰 '+(v.price===0?'Grátis':v.price.toLocaleString()+' MT')+' | 💵 '+v.daily+' MT/dia</div>';h+='<div class="vip-info-riqueza">📅 '+v.days+' dias | Total: '+v.total.toLocaleString()+' MT</div>';if(v.type==='estagiario')h+='<div><span class="vip-badge-riqueza" style="background:rgba(255,71,87,0.4);">🔒 NÃO PODE SACAR</span></div>';else h+='<div><span class="vip-badge-riqueza">🏦 '+v.withdrawDays.map(d=>days[d]).join(', ')+'</span></div>';if(isCurrent)h+='<div style="color:#FFD700;font-weight:700;margin-top:8px;">✅ ATIVO</div>';else if(isSuperiorBloqueado)h+='<div style="color:#FF4757;font-weight:700;margin-top:8px;font-size:11px;">🔒 Apenas upgrade</div>';h+='</div>';});return h; }
+        function renderFundos() { let h='<h3 style="color:#FFD700;text-align:center;">📈 Fundos</h3>';fundLevels.forEach((f,i)=>{h+='<div class="fundo-card-riqueza fundo-riqueza-'+(i%5)+'" onclick="showFundModal('+f.level+')">';h+='<div class="fundo-name-riqueza">📈 '+f.name+'</div>';h+='<div class="fundo-info-riqueza">💰 Mín: '+f.minPrice.toLocaleString()+' MT | Base: '+f.basePrice.toLocaleString()+' MT</div>';h+='<div class="fundo-info-riqueza">💵 Retorno: '+f.baseTotal.toLocaleString()+' MT | '+f.days+' dias | '+f.basePercent+'%</div>';h+=(currentUser.fundLevels?.some(fl=>fl.level===f.level)?'<div style="color:#FFD700;">✅ ATIVO</div>':'')+'</div>';});return h; }
+        function renderTarefas() { let h='<h3 style="color:#FFD700;text-align:center;">📋 Tarefas</h3>';h+='<div style="text-align:center;color:#FFD700;margin-bottom:12px;" id="serverTime">Carregando...</div>';h+='<div class="vip-card-riqueza vip-riqueza-1" style="cursor:default;">';h+='<div class="vip-name-riqueza">📺 GANHE VENDO VÍDEOS</div>';h+='<div class="vip-info-riqueza">Tutoriais da Plataforma</div>';h+='<button onclick="openYoutubeTutorial()" class="action-btn btn-gold" style="width:100%;margin-top:8px;">▶️ Assistir Tutoriais</button>';h+='</div>';h+='<div style="margin-top:16px;"><h4 style="color:#FFD700;margin-bottom:8px;">🏆 Benefícios por Convites</h4>';h+='<div class="beneficios-scroll" style="margin-bottom:8px;">';const claimedRewards=currentUser.claimedReferralRewards||[];referralRewards.forEach(reward=>{const isClaimed=claimedRewards.includes(reward.level);const isCurrent=!isClaimed&&(claimedRewards.length===reward.level-1||(claimedRewards.length===0&&reward.level===1));h+='<div class="beneficio-item'+(isClaimed?' claimed':'')+(isCurrent?' current':'')+'" onclick="verificarEColetarPremio()">';h+='<div class="beneficio-icon">'+reward.icon+'</div>';h+='<div class="beneficio-nivel">Nv '+reward.level+'</div>';h+='<div class="beneficio-reward">+'+reward.reward.toLocaleString()+' MT</div>';h+='<div class="beneficio-qtd">'+reward.required+' convidados</div>';if(isClaimed)h+='<div class="beneficio-status" style="background:rgba(16,185,129,0.2);color:#10B981;">✅ RECEBIDO</div>';else if(isCurrent)h+='<div class="beneficio-status" style="background:rgba(255,215,0,0.2);color:#FFD700;">🟡 ATUAL</div>';else h+='<div class="beneficio-status" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.4);">🔒</div>';h+='</div>';});h+='</div><div style="color:#FF4757;font-size:10px;text-align:center;">⚠️ Arraste para ver todos | Cada nível zera após coletar!</div></div>';h+='<div style="margin-top:12px;"></div>'+renderBeneficiosTarefas();return h; }
         function openYoutubeTutorial() { window.open(configCache.youtubeLink||'https://youtube.com/@geninsinvest','_blank'); }
-
-        async function verificarEColetarPremio() {
-            if (!currentUser?.phone) return;
-            const claimedRewards = currentUser.claimedReferralRewards || [];
-            let currentReward = null;
-            for (const reward of referralRewards) { if (!claimedRewards.includes(reward.level)) { currentReward = reward; break; } }
-            if (!currentReward) { alert('🎉 PARABÉNS! Completou TODOS os níveis!'); return; }
-            const depositsSnap = await db.ref('depositos').once('value');
-            const allDeposits = depositsSnap.exists() ? depositsSnap.val() : {};
-            const approvedPhones = [...new Set(Object.values(allDeposits).filter(d=>d?.status==='approved').map(d=>d.userPhone||d.phone).filter(Boolean))];
-            const user = await getUser(currentUser.phone);
-            const usedReferrals = user.usedReferrals || [];
-            let count = 0;
-            for (const refPhone of user.invitedUsers||[]) { if (!usedReferrals.includes(refPhone) && approvedPhones.includes(refPhone)) count++; }
-            if (count >= currentReward.required) {
-                currentUser.balance = (currentUser.balance||0)+currentReward.reward;
-                if (!currentUser.claimedReferralRewards) currentUser.claimedReferralRewards = [];
-                currentUser.claimedReferralRewards.push(currentReward.level);
-                const newUsed = [...usedReferrals]; let usedCount = 0;
-                for (const refPhone of user.invitedUsers||[]) { if (!newUsed.includes(refPhone) && approvedPhones.includes(refPhone) && usedCount<currentReward.required) { newUsed.push(refPhone); usedCount++; } }
-                currentUser.usedReferrals = newUsed;
-                if (!currentUser.rewardHistory) currentUser.rewardHistory = [];
-                currentUser.rewardHistory.push({ level:currentReward.level, name:currentReward.name, reward:currentReward.reward, date:new Date().toISOString() });
-                await saveUser();
-                const overlay = document.createElement('div'); overlay.className='modal-overlay'; overlay.id='rewardModal';
-                overlay.innerHTML='<div class="modal-box" style="text-align:center;"><div style="font-size:64px;">'+currentReward.icon+'</div><h3 style="color:#FFD700;font-size:20px;">🎉 NÍVEL '+currentReward.level+'!</h3><div style="color:white;">'+currentReward.name+'</div><div style="background:linear-gradient(135deg,#FFD700,#FFA500);color:#0a0f1a;padding:16px;border-radius:12px;margin:12px 0;font-size:26px;font-weight:800;">💰 +'+currentReward.reward.toLocaleString()+' MT</div><button onclick="document.getElementById(\'rewardModal\').remove();showTab(\'tarefas\');" class="btn-primary">✅ RECEBER</button></div>';
-                document.body.appendChild(overlay);
-            } else { alert('📊 Nível '+currentReward.level+' - '+currentReward.name+'\n👥 '+count+' de '+currentReward.required+'\n💰 Prémio: '+currentReward.reward.toLocaleString()+' MT'); }
-        }
-        
-        function renderBeneficiosTarefas() {
-            const claimedRewards = currentUser.claimedReferralRewards || [];
-            let currentReward = null;
-            for (const reward of referralRewards) { if (!claimedRewards.includes(reward.level)) { currentReward = reward; break; } }
-            let h = '<div class="vip-card-riqueza vip-riqueza-3" style="cursor:default;">';
-            h += '<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="font-size:30px;">🏆</span><div><div class="vip-name-riqueza" style="font-size:18px;">Benefícios por Convites</div><div style="color:#FFD700;font-size:11px;">Convide amigos e ganhe prémios!</div></div></div>';
-            if (currentReward) {
-                h += '<div style="background:rgba(255,215,0,0.15);border:2px solid #FFD700;border-radius:12px;padding:14px;margin-bottom:10px;">';
-                h += '<div style="text-align:center;color:#FFD700;font-weight:700;">🎯 Nível '+currentReward.level+': '+currentReward.icon+' '+currentReward.name+'</div>';
-                h += '<div style="color:white;text-align:center;">Convide <strong style="color:#FFD700;">'+currentReward.required+' novas pessoas</strong></div>';
-                h += '<div style="text-align:center;color:#10B981;font-size:20px;font-weight:800;">💰 '+currentReward.reward.toLocaleString()+' MT</div></div>';
-            } else { h += '<div style="background:rgba(16,185,129,0.15);border:2px solid #10B981;border-radius:12px;padding:14px;margin-bottom:10px;text-align:center;"><div style="color:#10B981;font-size:18px;font-weight:700;">🦊 TODOS COMPLETOS!</div></div>'; }
-            h += '<button onclick="verificarEColetarPremio()" class="action-btn btn-coletar" style="width:100%;margin-bottom:12px;">💰 COLETAR PRÉMIO</button>';
-            h += '<div style="max-height:280px;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;">';
-            referralRewards.forEach(reward => {
-                const isClaimed=claimedRewards.includes(reward.level), isCurrent=currentReward?.level===reward.level;
-                let bg=isClaimed?'linear-gradient(135deg,#10B981,#34D399)':(isCurrent?'linear-gradient(135deg,#F59E0B,#F97316)':'linear-gradient(135deg,#8B5CF6,#7C3AED)');
-                let border=isClaimed?'2px solid #10B981':(isCurrent?'2px solid #F59E0B':'2px solid #8B5CF6');
-                h+='<div style="background:'+bg+';border:'+border+';border-radius:14px;padding:12px 8px;text-align:center;">';
-                h+='<div style="font-size:22px;">'+reward.icon+'</div><div style="color:white;font-size:13px;font-weight:700;">Nv '+reward.level+'</div>';
-                h+='<div style="color:white;font-size:16px;font-weight:800;">+'+reward.reward.toLocaleString()+' MT</div>';
-                h+='<div style="color:rgba(255,255,255,0.9);font-size:11px;">'+reward.required+' convidados</div>';
-                if(isClaimed)h+='<div style="color:#fff;font-size:10px;background:rgba(255,255,255,0.3);border-radius:10px;padding:2px 8px;">✅ RECEBIDO</div>';
-                else if(isCurrent)h+='<div style="color:#fff;font-size:10px;background:rgba(255,255,255,0.3);border-radius:10px;padding:2px 8px;animation:pulse 1.5s infinite;">🟡 COLETAR</div>';
-                else h+='<div style="color:rgba(255,255,255,0.7);font-size:10px;background:rgba(255,255,255,0.2);border-radius:10px;padding:2px 8px;">🔒 '+reward.required+' dep.</div>';
-                h+='</div>';
-            });
-            h+='</div><div style="color:#FF4757;font-size:10px;text-align:center;margin-top:8px;">⚠️ Cada nível zera após coletar!</div></div>';
-            return h;
-        }
-
-        // ==================== CONVIDAR ====================
-        function renderConvidar() { 
-            const inv=currentUser.invitedUsers||[]; 
-            const inviteLink=window.location.href.split('?')[0]+'?ref='+currentUser.phone; 
-            let h='<h3 style="color:#FFD700;text-align:center;">👥 Convidar Amigos</h3>'; 
-            h+='<div style="background:rgba(255,215,0,0.06);padding:20px;border-radius:16px;text-align:center;margin-bottom:16px;border:1px solid rgba(255,215,0,0.2);">'; 
-            h+='<div style="color:#FFD700;font-size:18px;font-weight:700;">🔗 Convite</div>'; 
-            h+='<div style="background:rgba(0,0,0,0.5);color:#FFD700;border:2px solid #FFD700;border-radius:14px;padding:16px;margin:12px 0;font-size:22px;font-weight:800;">'+currentUser.phone+'</div>'; 
-            h+='<div style="background:rgba(0,0,0,0.5);color:white;border:2px dashed #FFD700;border-radius:14px;padding:12px;margin-bottom:12px;font-size:11px;word-break:break-all;">'+inviteLink+'</div>'; 
-            h+='<div style="display:flex;gap:8px;"><button onclick="copyInviteCode()" style="flex:1;background:#FFD700;color:#0a0f1a;padding:14px;border-radius:12px;font-weight:700;border:none;cursor:pointer;">📋 Copiar Código</button><button onclick="copyInviteLink()" style="flex:1;background:#3B82F6;color:white;padding:14px;border-radius:12px;font-weight:700;border:none;cursor:pointer;">🔗 Copiar Link</button></div>'; 
-            h+='<div style="color:#FFD700;margin-top:12px;font-size:14px;">💰 Ganhe <strong>7%</strong> sobre depósitos!</div></div>'; 
-            h+='<div style="display:flex;gap:4px;margin-bottom:12px;background:rgba(255,255,255,0.03);border-radius:14px;padding:4px;"><button onclick="showConvidarSubTab(\'convidados\')" id="subTabConvidados" class="tab-btn active" style="flex:1;">👥 ('+inv.length+')</button><button onclick="showConvidarSubTab(\'depositos\')" id="subTabDepositos" class="tab-btn" style="flex:1;">💰 Depósitos</button><button onclick="showConvidarSubTab(\'saques\')" id="subTabSaques" class="tab-btn" style="flex:1;">💸 Saques</button></div><div id="convidarSubContent"></div>'; 
-            h+='<button class="sobre-nos-btn" onclick="showSobreNos()">📖 Sobre Nós</button>';
-            setTimeout(()=>showConvidarSubTab('convidados'),100); return h; 
-        }
-        
-        function copyInviteCode() { navigator.clipboard.writeText(currentUser.phone); alert('✅ Copiado!'); }
-        function copyInviteLink() { navigator.clipboard.writeText(window.location.href.split('?')[0]+'?ref='+currentUser.phone); alert('✅ Link copiado!'); }
-        
-        async function showConvidarSubTab(tab) { 
-            document.querySelectorAll('[id^="subTab"]').forEach(b=>b.classList.remove('active')); 
-            document.getElementById('subTab'+tab.charAt(0).toUpperCase()+tab.slice(1))?.classList.add('active'); 
-            const c=document.getElementById('convidarSubContent'); if(!c)return; 
-            c.innerHTML=tab==='convidados'?renderConvidadosList():await(tab==='depositos'?renderDepositosList():renderSaquesList()); 
-        }
-        
-        function renderConvidadosList() { const inv=currentUser.invitedUsers||[],names=currentUser.invitedNames||[]; if(!inv.length)return'<div style="text-align:center;color:#aaa;padding:30px;">📭 Nenhum</div>'; return'<div style="color:#FFD700;">👥 ('+inv.length+')</div><div class="invited-list">'+inv.map((p,i)=>'<div class="invited-item"><div>👤 '+(names[i]||p)+'</div><div style="color:#aaa;">📱 '+p+'</div></div>').join('')+'</div>'; }
-        
-        async function renderDepositosList() { const s=await db.ref('depositos').once('value'),all=s.exists()?s.val():{}; const mine=Object.entries(all).filter(([k,d])=>d?.userPhone===currentUser.phone||d?.phone===currentUser.phone).map(([k,d])=>({...d})).sort((a,b)=>new Date(b.date)-new Date(a.date)); if(!mine.length)return'<div style="text-align:center;color:#aaa;">💰 Nenhum</div>'; return'<div style="color:#FFD700;">💰 ('+mine.length+')</div>'+mine.map(d=>{const sc=d.status==='approved'?'#10B981':(d.status==='rejected'?'#FF4757':'#FFD700');return'<div style="background:rgba(255,255,255,0.02);border:1px solid '+sc+';border-radius:14px;padding:14px;margin:8px 0;"><div style="display:flex;justify-content:space-between;"><div><div style="color:white;">'+(d.name||'Depósito')+'</div><div style="color:#aaa;font-size:10px;">'+(d.date?new Date(d.date).toLocaleString('pt-MZ'):'')+'</div></div><div style="text-align:right;"><div style="color:'+sc+';">'+(d.amount||0).toLocaleString()+' MT</div></div></div></div>';}).join(''); }
-        
-        async function renderSaquesList() { const s=await db.ref('saques').once('value'),all=s.exists()?s.val():{}; const mine=Object.entries(all).filter(([k,s])=>s?.phone===currentUser.phone).map(([k,s])=>({...s})).sort((a,b)=>new Date(b.date)-new Date(a.date)); if(!mine.length)return'<div style="text-align:center;color:#aaa;">💸 Nenhum</div>'; return'<div style="color:#FFD700;">💸 ('+mine.length+')</div>'+mine.map(s=>{const sc=s.status==='approved'?'#10B981':(s.status==='rejected'?'#FF4757':'#FFD700');return'<div style="background:rgba(255,255,255,0.02);border:1px solid '+sc+';border-radius:14px;padding:14px;margin:8px 0;"><div style="display:flex;justify-content:space-between;"><div><div style="color:white;">💸 Saque</div><div style="color:#aaa;font-size:10px;">'+(s.date?new Date(s.date).toLocaleString('pt-MZ'):'')+'</div></div><div style="text-align:right;"><div style="color:#FF4757;">-'+(s.amount||0).toLocaleString()+' MT</div><div style="color:#10B981;">Líq: '+(s.netAmount||0).toLocaleString()+' MT</div></div></div></div>';}).join(''); }
-
-        // ==================== SOBRE NÓS ====================
-        function showSobreNos() {
-            let h = '<div style="text-align:center;padding:10px 0;"><div style="font-size:48px;margin-bottom:8px;">🦊</div><h2 style="color:#FFD700;margin-bottom:4px;">GENINS INVESTIMENT</h2><p style="color:rgba(255,255,255,0.6);margin-bottom:20px;font-size:13px;">Conheça nossa história e nossos valores</p>';
-            artigosSobreNos.forEach(a => { h += '<div class="artigo-card"><h4>📌 '+a.titulo+'</h4><p>'+a.conteudo+'</p></div>'; });
-            h += '<button onclick="showTab(\'home\')" class="btn-primary" style="margin-top:20px;">🏠 Voltar para Home</button></div>';
-            document.getElementById('mainContent').innerHTML = h;
-        }
-
-        // ==================== SAQUE ATUALIZADO (ESTAGIÁRIO VÊ TABELA) ====================
-        function showWithdrawalOptions() { 
-            const wi = getWithdrawInfo();
-            
-            // Estagiário vê a tabela mas não pode sacar
-            if (wi.isEstagiario) {
-                const amounts = [200, 400, 600, 1000, 2000, 3000, 5000, 8000, 12000, 16000, 20000, 30000];
-                let html = '<h3 style="color:#FFD700;">💸 Sacar</h3>';
-                html += '<div style="text-align:center;background:rgba(255,71,87,0.1);border:1px solid #FF4757;border-radius:12px;padding:12px;margin-bottom:12px;">';
-                html += '<div style="font-size:40px;">🔒</div>';
-                html += '<div style="color:#FF4757;font-weight:700;font-size:14px;">' + wi.text + '</div>';
-                html += '</div>';
-                html += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0;">';
-                amounts.forEach(a => {
-                    html += '<div class="saque-amount-btn disabled">' + a.toLocaleString() + ' MT</div>';
-                });
-                html += '</div>';
-                html += '<button onclick="showTab(\'vips\')" class="action-btn btn-gold" style="width:100%;margin-top:12px;">💎 VER PLANOS VIP</button>';
-                html += '<button onclick="showTab(\'home\')" class="btn-outline" style="margin-top:8px;">🏠 Voltar</button>';
-                document.getElementById('mainContent').innerHTML = html;
-                return;
-            }
-            
-            if (!currentUser.vip || currentUser.vip === 0) {
-                document.getElementById('mainContent').innerHTML = '<div style="text-align:center;padding:20px;"><div style="font-size:64px;">🔒</div><h3 style="color:#FF4757;">SAQUE BLOQUEADO</h3><p style="color:white;">' + wi.text + '</p><button onclick="showTab(\'vips\')" class="action-btn btn-gold" style="width:100%;margin-top:12px;">💎 VER PLANOS VIP</button></div>';
-                return;
-            }
-            
-            const amounts = [200, 400, 600, 1000, 2000, 3000, 5000, 8000, 12000, 16000, 20000, 30000];
-            let html = '<h3 style="color:#FFD700;">💸 Sacar</h3>';
-            html += '<div style="text-align:center;color:' + (wi.allowed ? '#10B981' : '#FF4757') + ';font-weight:700;margin-bottom:8px;">' + wi.text + '</div>';
-            
-            if (wi.cooldownRemaining && wi.cooldownRemaining > 0) {
-                html += '<div class="countdown-timer" id="saqueCooldown" style="color:#FF4757;">⏳ Aguarde o timer zerar</div>';
-            }
-            
-            html += '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0;">';
-            amounts.forEach(a => {
-                html += '<div onclick="' + (wi.allowed ? 'requestWithdrawal(' + a + ')' : '') + '" class="saque-amount-btn' + (wi.allowed ? '' : ' disabled') + '" style="' + (a > (currentUser.balance || 0) ? 'opacity:0.5;' : '') + '">' + a.toLocaleString() + ' MT</div>';
-            });
-            html += '</div>';
-            html += '<button onclick="showTab(\'home\')" class="btn-outline" style="margin-top:8px;">🏠 Voltar</button>';
-            
-            document.getElementById('mainContent').innerHTML = html;
-            
-            if (wi.cooldownRemaining && wi.cooldownRemaining > 0) {
-                updateSaqueCooldown(wi.cooldownRemaining);
-            }
-        }
-        
-        function updateSaqueCooldown(remainingMs) {
-            const el = document.getElementById('saqueCooldown');
-            if (!el) return;
-            const update = () => {
-                remainingMs -= 1000;
-                if (remainingMs <= 0) { el.textContent = '✅ Disponível!'; el.style.color = '#10B981'; showWithdrawalOptions(); return; }
-                const hrs = Math.floor(remainingMs / 3600000);
-                const mins = Math.floor((remainingMs % 3600000) / 60000);
-                const secs = Math.floor((remainingMs % 60000) / 1000);
-                el.textContent = '⏳ ' + String(hrs).padStart(2, '0') + ':' + String(mins).padStart(2, '0') + ':' + String(secs).padStart(2, '0');
-                setTimeout(update, 1000);
-            };
-            update();
-        }
-        
-        async function requestWithdrawal(a) {
-            const wi = getWithdrawInfo();
-            if (!wi.allowed) { alert('⏳ Saque não disponível!\n' + wi.text); return; }
-            const fee = Math.round(a * 0.1), net = a - fee;
-            if ((currentUser.balance || 0) < a) { alert('❌ Saldo insuficiente!'); return; }
-            if (confirm('💸 Confirmar Saque?\n\n💰 Valor: ' + a.toLocaleString() + ' MT\n📊 Taxa (10%): ' + fee.toLocaleString() + ' MT\n💵 Líquido: ' + net.toLocaleString() + ' MT\n\n⏳ Próximo saque em 24h')) {
-                currentUser.balance -= a;
-                currentUser.lastWithdrawDate = new Date().toISOString();
-                await db.ref('saques/saq_' + Date.now()).set({ name: currentUser.name, phone: currentUser.phone, amount: a, fee: fee, netAmount: net, date: new Date().toISOString(), status: 'pending' });
-                await saveUser();
-                alert('✅ Saque de ' + net.toLocaleString() + ' MT solicitado!\n⏳ Aguarde aprovação.\n🕐 Próximo saque disponível em 24 horas.');
-                showTab('home');
-            }
-        }
-        
+        async function verificarEColetarPremio() { if(!currentUser?.phone)return;const claimedRewards=currentUser.claimedReferralRewards||[];let currentReward=null;for(const reward of referralRewards){if(!claimedRewards.includes(reward.level)){currentReward=reward;break;}}if(!currentReward){alert('🎉 PARABÉNS! Completou TODOS os níveis!');return;}const depositsSnap=await db.ref('depositos').once('value');const allDeposits=depositsSnap.exists()?depositsSnap.val():{};const approvedPhones=[...new Set(Object.values(allDeposits).filter(d=>d?.status==='approved').map(d=>d.userPhone||d.phone).filter(Boolean))];const user=await getUser(currentUser.phone);const usedReferrals=user.usedReferrals||[];let count=0;for(const refPhone of user.invitedUsers||[]){if(!usedReferrals.includes(refPhone)&&approvedPhones.includes(refPhone))count++;}if(count>=currentReward.required){currentUser.balance=(currentUser.balance||0)+currentReward.reward;if(!currentUser.claimedReferralRewards)currentUser.claimedReferralRewards=[];currentUser.claimedReferralRewards.push(currentReward.level);const newUsed=[...usedReferrals];let usedCount=0;for(const refPhone of user.invitedUsers||[]){if(!newUsed.includes(refPhone)&&approvedPhones.includes(refPhone)&&usedCount<currentReward.required){newUsed.push(refPhone);usedCount++;}}currentUser.usedReferrals=newUsed;if(!currentUser.rewardHistory)currentUser.rewardHistory=[];currentUser.rewardHistory.push({level:currentReward.level,name:currentReward.name,reward:currentReward.reward,date:new Date().toISOString()});await saveUser();const overlay=document.createElement('div');overlay.className='modal-overlay';overlay.id='rewardModal';overlay.innerHTML='<div class="modal-box" style="text-align:center;"><div style="font-size:64px;">'+currentReward.icon+'</div><h3 style="color:#FFD700;font-size:20px;">🎉 NÍVEL '+currentReward.level+'!</h3><div style="color:white;">'+currentReward.name+'</div><div style="background:linear-gradient(135deg,#FFD700,#FFA500);color:#0a0f1a;padding:16px;border-radius:12px;margin:12px 0;font-size:26px;font-weight:800;">💰 +'+currentReward.reward.toLocaleString()+' MT</div><button onclick="document.getElementById(\'rewardModal\').remove();showTab(\'tarefas\');" class="btn-primary">✅ RECEBER</button></div>';document.body.appendChild(overlay);}else{alert('📊 Nível '+currentReward.level+' - '+currentReward.name+'\n👥 '+count+' de '+currentReward.required+'\n💰 Prémio: '+currentReward.reward.toLocaleString()+' MT');} }
+        function renderBeneficiosTarefas() { const claimedRewards=currentUser.claimedReferralRewards||[];let currentReward=null;for(const reward of referralRewards){if(!claimedRewards.includes(reward.level)){currentReward=reward;break;}}let h='<div class="vip-card-riqueza vip-riqueza-3" style="cursor:default;">';h+='<div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;"><span style="font-size:30px;">🏆</span><div><div class="vip-name-riqueza" style="font-size:18px;">Benefícios por Convites</div><div style="color:#FFD700;font-size:11px;">Convide amigos e ganhe prémios!</div></div></div>';if(currentReward){h+='<div style="background:rgba(255,215,0,0.15);border:2px solid #FFD700;border-radius:12px;padding:14px;margin-bottom:10px;">';h+='<div style="text-align:center;color:#FFD700;font-weight:700;">🎯 Nível '+currentReward.level+': '+currentReward.icon+' '+currentReward.name+'</div>';h+='<div style="color:white;text-align:center;">Convide <strong style="color:#FFD700;">'+currentReward.required+' novas pessoas</strong></div>';h+='<div style="text-align:center;color:#10B981;font-size:20px;font-weight:800;">💰 '+currentReward.reward.toLocaleString()+' MT</div></div>';}else{h+='<div style="background:rgba(16,185,129,0.15);border:2px solid #10B981;border-radius:12px;padding:14px;margin-bottom:10px;text-align:center;"><div style="color:#10B981;font-size:18px;font-weight:700;">🦊 TODOS COMPLETOS!</div></div>';}h+='<button onclick="verificarEColetarPremio()" class="action-btn btn-coletar" style="width:100%;margin-bottom:12px;">💰 COLETAR PRÉMIO</button>';h+='<div style="max-height:280px;overflow-y:auto;display:grid;grid-template-columns:1fr 1fr;gap:8px;">';referralRewards.forEach(reward=>{const isClaimed=claimedRewards.includes(reward.level),isCurrent=currentReward?.level===reward.level;let bg=isClaimed?'linear-gradient(135deg,#10B981,#34D399)':(isCurrent?'linear-gradient(135deg,#F59E0B,#F97316)':'linear-gradient(135deg,#8B5CF6,#7C3AED)');let border=isClaimed?'2px solid #10B981':(isCurrent?'2px solid #F59E0B':'2px solid #8B5CF6');h+='<div style="background:'+bg+';border:'+border+';border-radius:14px;padding:12px 8px;text-align:center;">';h+='<div style="font-size:22px;">'+reward.icon+'</div><div style="color:white;font-size:13px;font-weight:700;">Nv '+reward.level+'</div>';h+='<div style="color:white;font-size:16px;font-weight:800;">+'+reward.reward.toLocaleString()+' MT</div>';h+='<div style="color:rgba(255,255,255,0.9);font-size:11px;">'+reward.required+' convidados</div>';if(isClaimed)h+='<div style="color:#fff;font-size:10px;background:rgba(255,255,255,0.3);border-radius:10px;padding:2px 8px;">✅ RECEBIDO</div>';else if(isCurrent)h+='<div style="color:#fff;font-size:10px;background:rgba(255,255,255,0.3);border-radius:10px;padding:2px 8px;animation:pulse 1.5s infinite;">🟡 COLETAR</div>';else h+='<div style="color:rgba(255,255,255,0.7);font-size:10px;background:rgba(255,255,255,0.2);border-radius:10px;padding:2px 8px;">🔒 '+reward.required+' dep.</div>';h+='</div>';});h+='</div><div style="color:#FF4757;font-size:10px;text-align:center;margin-top:8px;">⚠️ Cada nível zera após coletar!</div></div>';return h; }
+        function renderConvidar() { const inv=currentUser.invitedUsers||[];const inviteLink=window.location.href.split('?')[0]+'?ref='+currentUser.phone;let h='<h3 style="color:#FFD700;text-align:center;">👥 Convidar Amigos</h3>';h+='<div style="background:rgba(255,215,0,0.06);padding:20px;border-radius:16px;text-align:center;margin-bottom:16px;border:1px solid rgba(255,215,0,0.2);">';h+='<div style="color:#FFD700;font-size:18px;font-weight:700;">🔗 Convite</div>';h+='<div style="background:rgba(0,0,0,0.5);color:#FFD700;border:2px solid #FFD700;border-radius:14px;padding:16px;margin:12px 0;font-size:22px;font-weight:800;">'+currentUser.phone+'</div>';h+='<div style="background:rgba(0,0,0,0.5);color:white;border:2px dashed #FFD700;border-radius:14px;padding:12px;margin-bottom:12px;font-size:11px;word-break:break-all;">'+inviteLink+'</div>';h+='<div style="display:flex;gap:8px;"><button onclick="copyInviteCode()" style="flex:1;background:#FFD700;color:#0a0f1a;padding:14px;border-radius:12px;font-weight:700;border:none;cursor:pointer;">📋 Copiar Código</button><button onclick="copyInviteLink()" style="flex:1;background:#3B82F6;color:white;padding:14px;border-radius:12px;font-weight:700;border:none;cursor:pointer;">🔗 Copiar Link</button></div>';h+='<div style="color:#FFD700;margin-top:12px;font-size:14px;">💰 Ganhe <strong>7%</strong> sobre depósitos!</div></div>';h+='<div style="display:flex;gap:4px;margin-bottom:12px;background:rgba(255,255,255,0.03);border-radius:14px;padding:4px;"><button onclick="showConvidarSubTab(\'convidados\')" id="subTabConvidados" class="tab-btn active" style="flex:1;">👥 ('+inv.length+')</button><button onclick="showConvidarSubTab(\'depositos\')" id="subTabDepositos" class="tab-btn" style="flex:1;">💰 Depósitos</button><button onclick="showConvidarSubTab(\'saques\')" id="subTabSaques" class="tab-btn" style="flex:1;">💸 Saques</button></div><div id="convidarSubContent"></div>';h+='<button class="sobre-nos-btn" onclick="showSobreNos()">📖 Sobre Nós</button>';setTimeout(()=>showConvidarSubTab('convidados'),100);return h; }
+        function copyInviteCode() { navigator.clipboard.writeText(currentUser.phone);alert('✅ Copiado!'); }
+        function copyInviteLink() { navigator.clipboard.writeText(window.location.href.split('?')[0]+'?ref='+currentUser.phone);alert('✅ Link copiado!'); }
+        async function showConvidarSubTab(tab) { document.querySelectorAll('[id^="subTab"]').forEach(b=>b.classList.remove('active'));document.getElementById('subTab'+tab.charAt(0).toUpperCase()+tab.slice(1))?.classList.add('active');const c=document.getElementById('convidarSubContent');if(!c)return;c.innerHTML=tab==='convidados'?renderConvidadosList():await(tab==='depositos'?renderDepositosList():renderSaquesList()); }
+        function renderConvidadosList() { const inv=currentUser.invitedUsers||[],names=currentUser.invitedNames||[];if(!inv.length)return'<div style="text-align:center;color:#aaa;padding:30px;">📭 Nenhum</div>';return'<div style="color:#FFD700;">👥 ('+inv.length+')</div><div class="invited-list">'+inv.map((p,i)=>'<div class="invited-item"><div>👤 '+(names[i]||p)+'</div><div style="color:#aaa;">📱 '+p+'</div></div>').join('')+'</div>'; }
+        async function renderDepositosList() { const s=await db.ref('depositos').once('value'),all=s.exists()?s.val():{};const mine=Object.entries(all).filter(([k,d])=>d?.userPhone===currentUser.phone||d?.phone===currentUser.phone).map(([k,d])=>({...d})).sort((a,b)=>new Date(b.date)-new Date(a.date));if(!mine.length)return'<div style="text-align:center;color:#aaa;">💰 Nenhum</div>';return'<div style="color:#FFD700;">💰 ('+mine.length+')</div>'+mine.map(d=>{const sc=d.status==='approved'?'#10B981':(d.status==='rejected'?'#FF4757':'#FFD700');return'<div style="background:rgba(255,255,255,0.02);border:1px solid '+sc+';border-radius:14px;padding:14px;margin:8px 0;"><div style="display:flex;justify-content:space-between;"><div><div style="color:white;">'+(d.name||'Depósito')+'</div><div style="color:#aaa;font-size:10px;">'+(d.date?new Date(d.date).toLocaleString('pt-MZ'):'')+'</div></div><div style="text-align:right;"><div style="color:'+sc+';">'+(d.amount||0).toLocaleString()+' MT</div></div></div></div>';}).join(''); }
+        async function renderSaquesList() { const s=await db.ref('saques').once('value'),all=s.exists()?s.val():{};const mine=Object.entries(all).filter(([k,s])=>s?.phone===currentUser.phone).map(([k,s])=>({...s})).sort((a,b)=>new Date(b.date)-new Date(a.date));if(!mine.length)return'<div style="text-align:center;color:#aaa;">💸 Nenhum</div>';return'<div style="color:#FFD700;">💸 ('+mine.length+')</div>'+mine.map(s=>{const sc=s.status==='approved'?'#10B981':(s.status==='rejected'?'#FF4757':'#FFD700');return'<div style="background:rgba(255,255,255,0.02);border:1px solid '+sc+';border-radius:14px;padding:14px;margin:8px 0;"><div style="display:flex;justify-content:space-between;"><div><div style="color:white;">💸 Saque</div><div style="color:#aaa;font-size:10px;">'+(s.date?new Date(s.date).toLocaleString('pt-MZ'):'')+'</div></div><div style="text-align:right;"><div style="color:#FF4757;">-'+(s.amount||0).toLocaleString()+' MT</div><div style="color:#10B981;">Líq: '+(s.netAmount||0).toLocaleString()+' MT</div></div></div></div>';}).join(''); }
+        function showSobreNos() { let h='<div style="text-align:center;padding:10px 0;"><div style="font-size:48px;margin-bottom:8px;">🦊</div><h2 style="color:#FFD700;margin-bottom:4px;">GENINS INVESTIMENT</h2><p style="color:rgba(255,255,255,0.6);margin-bottom:20px;font-size:13px;">Conheça nossa história e nossos valores</p>';artigosSobreNos.forEach(a=>{h+='<div class="artigo-card"><h4>📌 '+a.titulo+'</h4><p>'+a.conteudo+'</p></div>';});h+='<button onclick="showTab(\'home\')" class="btn-primary" style="margin-top:20px;">🏠 Voltar para Home</button></div>';document.getElementById('mainContent').innerHTML=h; }
+        function showWithdrawalOptions() { const wi=getWithdrawInfo();if(wi.isEstagiario){const amounts=[200,400,600,1000,2000,3000,5000,8000,12000,16000,20000,30000];let html='<h3 style="color:#FFD700;">💸 Sacar</h3>';html+='<div style="text-align:center;background:rgba(255,71,87,0.1);border:1px solid #FF4757;border-radius:12px;padding:12px;margin-bottom:12px;"><div style="font-size:40px;">🔒</div><div style="color:#FF4757;">'+wi.text+'</div></div>';html+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0;">';amounts.forEach(a=>{html+='<div class="saque-amount-btn disabled">'+a.toLocaleString()+' MT</div>';});html+='</div><button onclick="showTab(\'vips\')" class="action-btn btn-gold" style="width:100%;">💎 VER PLANOS VIP</button>';document.getElementById('mainContent').innerHTML=html;return;}if(!currentUser.vip||currentUser.vip===0){document.getElementById('mainContent').innerHTML='<div style="text-align:center;padding:20px;"><div style="font-size:64px;">🔒</div><h3 style="color:#FF4757;">SAQUE BLOQUEADO</h3><p style="color:white;">'+wi.text+'</p><button onclick="showTab(\'vips\')" class="action-btn btn-gold" style="width:100%;">💎 VER PLANOS VIP</button></div>';return;}const amounts=[200,400,600,1000,2000,3000,5000,8000,12000,16000,20000,30000];let html='<h3 style="color:#FFD700;">💸 Sacar</h3>';html+='<div style="text-align:center;color:'+(wi.allowed?'#10B981':'#FF4757')+';">'+wi.text+'</div>';if(wi.cooldownRemaining)html+='<div class="countdown-timer" id="saqueCooldown">⏳ Aguarde...</div>';html+='<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0;">';amounts.forEach(a=>{html+='<div onclick="'+(wi.allowed?'requestWithdrawal('+a+')':'')+'" class="saque-amount-btn'+(wi.allowed?'':' disabled')+'">'+a.toLocaleString()+' MT</div>';});html+='</div><button onclick="showTab(\'home\')" class="btn-outline">🏠 Voltar</button>';document.getElementById('mainContent').innerHTML=html;if(wi.cooldownRemaining)updateSaqueCooldown(wi.cooldownRemaining); }
+        function updateSaqueCooldown(ms) { const el=document.getElementById('saqueCooldown');if(!el)return;const upd=()=>{ms-=1000;if(ms<=0){el.textContent='✅ Disponível!';el.style.color='#10B981';return;}const h=Math.floor(ms/3600000),m=Math.floor((ms%3600000)/60000),s=Math.floor((ms%60000)/1000);el.textContent='⏳ '+String(h).padStart(2,'0')+':'+String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');setTimeout(upd,1000);};upd(); }
+        async function requestWithdrawal(a) { const wi=getWithdrawInfo();if(!wi.allowed){alert('⏳ Indisponível!');return;}const fee=Math.round(a*0.1),net=a-fee;if((currentUser.balance||0)<a){alert('❌ Saldo insuficiente!');return;}if(confirm('💸 Sacar '+a.toLocaleString()+' MT?\nTaxa: '+fee.toLocaleString()+' MT\nLíquido: '+net.toLocaleString()+' MT')){currentUser.balance-=a;currentUser.lastWithdrawDate=new Date().toISOString();await db.ref('saques/saq_'+Date.now()).set({name:currentUser.name,phone:currentUser.phone,amount:a,fee,netAmount:net,date:new Date().toISOString(),status:'pending'});await saveUser();alert('✅ Solicitado!');showTab('home');} }
         function showDepositModal(){const o=document.createElement('div');o.className='modal-overlay';o.innerHTML='<div class="modal-box"><h3 style="color:#FFD700;">💰 Depositar</h3><div class="perfil-row">📱 Emola: <strong>'+(configCache.emolaNumber||'851511841')+'</strong></div><div class="perfil-row">📱 M-Pesa: <strong>'+(configCache.mpesaNumber||'870514180')+'</strong></div><hr style="border-color:rgba(255,215,0,0.2);"><label class="deposit-label">👤 Nome:</label><input type="text" id="depName" class="deposit-input" value="'+(currentUser.name||'')+'"><label class="deposit-label">📱 Número:</label><input type="text" id="depPhone" class="deposit-input" value="'+(currentUser.phone||'')+'"><label class="deposit-label">💰 Valor (MT):</label><input type="number" id="depAmount" class="deposit-input" placeholder="Mínimo 200 MT"><button onclick="submitDeposit()" class="btn-primary">💾 ENVIAR</button><button onclick="this.closest(\'.modal-overlay\').remove()" class="btn-outline">Cancelar</button></div>';document.body.appendChild(o);}
-        
-        async function submitDeposit(){const name=document.getElementById('depName')?.value?.trim(),phone=document.getElementById('depPhone')?.value?.trim(),amount=Number(document.getElementById('depAmount')?.value);if(!name||!phone||!amount||amount<200){alert('⚠️ Preencha todos os campos! Mín 200 MT');return;}await addDeposit({name,phone,userPhone:currentUser.phone,amount,date:new Date().toISOString(),status:'pending'});document.querySelector('.modal-overlay')?.remove();alert('✅ Depósito registrado!');}
-
-        // ==================== FUNDOS ====================
-        function showFundModal(level){const f=fundLevels.find(x=>x.level===level);if(!f)return;const o=document.createElement('div');o.className='modal-overlay';o.innerHTML='<div class="modal-box"><h3 style="color:#FFD700;">📈 '+f.name+'</h3><div style="color:white;">💰 Mín: '+f.minPrice.toLocaleString()+' MT | Base: '+f.basePrice.toLocaleString()+' MT</div><div style="color:white;">💵 Retorno: '+f.baseTotal.toLocaleString()+' MT | '+f.days+' dias | '+f.basePercent+'%</div><input type="range" id="fundSlider" min="'+f.minPrice+'" max="'+(f.basePrice*2)+'" value="'+f.basePrice+'" step="100" oninput="updateFundCalc('+f.level+',this.value)" style="width:100%;margin:10px 0;"><div style="background:rgba(0,0,0,0.3);padding:15px;border-radius:10px;"><div style="color:white;">💰 <strong id="fundInvValue">'+f.basePrice.toLocaleString()+' MT</strong></div><div style="color:#10B981;">📈 <strong id="fundPercent">'+f.basePercent+'%</strong></div><div style="color:#FFD700;">💵 <strong id="fundReturn">'+f.baseTotal.toLocaleString()+' MT</strong></div></div><button onclick="confirmFundInvestment('+f.level+')" class="btn-primary">💸 INVESTIR</button><button onclick="this.closest(\'.modal-overlay\').remove()" class="btn-outline">Cancelar</button></div>';document.body.appendChild(o);}
-        
-        function updateFundCalc(level,value){const f=fundLevels.find(x=>x.level===level);if(!f)return;const iv=Number(value),ratio=iv/f.basePrice,pct=Math.round(f.basePercent*ratio),rv=Math.round(iv*(1+pct/100));document.getElementById('fundInvValue').textContent=iv.toLocaleString()+' MT';document.getElementById('fundPercent').textContent=pct+'%';document.getElementById('fundReturn').textContent=rv.toLocaleString()+' MT';}
-        
-        async function confirmFundInvestment(level){const f=fundLevels.find(x=>x.level===level);if(!f)return;const iv=Number(document.getElementById('fundSlider').value);if((currentUser.balance||0)<iv){alert('Saldo insuficiente!');return;}const rv=Math.round(iv*(1+f.basePercent/100));if(confirm('Investir '+iv.toLocaleString()+' MT?\nRetorno: '+rv.toLocaleString()+' MT\n'+f.days+' dias')){currentUser.balance-=iv;if(!currentUser.fundLevels)currentUser.fundLevels=[];currentUser.fundLevels.push({level:f.level,amount:iv,returnValue:rv});await saveUser();setTimeout(async()=>{const u=await getUser(currentUser.phone);if(u?.fundLevels?.some(fl=>fl.level===f.level)){u.balance=(u.balance||0)+rv;u.fundLevels=u.fundLevels.filter(fl=>fl.level!==f.level);if(!u.fundHistory)u.fundHistory=[];u.fundHistory.push({amount:iv,returnValue:rv,date:new Date().toISOString(),fund:f.name});currentUser=u;await saveUser();alert('🎉 '+f.name+'! +'+rv.toLocaleString()+' MT');}},f.days*86400000);document.querySelector('.modal-overlay')?.remove();alert('✅ Investido!');showTab('fundos');}}
-
-        // ==================== TIMER ====================
-        async function startTimer(){const el=document.getElementById('taskTimer');if(!el)return;const upd=async()=>{const st=await getServerTime(),n=new Date(st),end=new Date(n);end.setHours(23,59,59,999);const diff=end-n;el.textContent=diff<=0?'24:00:00':String(Math.floor(diff/3600000)).padStart(2,'0')+':'+String(Math.floor((diff%3600000)/60000)).padStart(2,'0')+':'+String(Math.floor((diff%60000)/1000)).padStart(2,'0');setTimeout(upd,1000);};upd();}
-
-        // ==================== ADMIN PANEL ====================
+        async function submitDeposit(){const n=document.getElementById('depName')?.value?.trim(),p=document.getElementById('depPhone')?.value?.trim(),a=Number(document.getElementById('depAmount')?.value);if(!n||!p||!a||a<200){alert('⚠️ Preencha! Mín 200 MT');return;}await addDeposit({name:n,phone:p,userPhone:currentUser.phone,amount:a,date:new Date().toISOString(),status:'pending'});document.querySelector('.modal-overlay')?.remove();alert('✅ Registrado!');}
+        function showFundModal(l){const f=fundLevels.find(x=>x.level===l);if(!f)return;const o=document.createElement('div');o.className='modal-overlay';o.innerHTML='<div class="modal-box"><h3 style="color:#FFD700;">📈 '+f.name+'</h3><div style="color:white;">💰 Mín: '+f.minPrice.toLocaleString()+' MT | Base: '+f.basePrice.toLocaleString()+' MT</div><div style="color:white;">💵 Retorno: '+f.baseTotal.toLocaleString()+' MT | '+f.days+' dias</div><input type="range" id="fundSlider" min="'+f.minPrice+'" max="'+(f.basePrice*2)+'" value="'+f.basePrice+'" step="100" oninput="updateFundCalc('+f.level+',this.value)" style="width:100%;margin:10px 0;"><div style="background:rgba(0,0,0,0.3);padding:15px;border-radius:10px;"><div>💰 <strong id="fundInvValue">'+f.basePrice.toLocaleString()+' MT</strong></div><div>📈 <strong id="fundPercent">'+f.basePercent+'%</strong></div><div>💵 <strong id="fundReturn">'+f.baseTotal.toLocaleString()+' MT</strong></div></div><button onclick="confirmFundInvestment('+f.level+')" class="btn-primary">💸 INVESTIR</button><button onclick="this.closest(\'.modal-overlay\').remove()" class="btn-outline">Cancelar</button></div>';document.body.appendChild(o);}
+        function updateFundCalc(l,v){const f=fundLevels.find(x=>x.level===l);if(!f)return;const iv=Number(v),r=iv/f.basePrice,p=Math.round(f.basePercent*r),rv=Math.round(iv*(1+p/100));document.getElementById('fundInvValue').textContent=iv.toLocaleString()+' MT';document.getElementById('fundPercent').textContent=p+'%';document.getElementById('fundReturn').textContent=rv.toLocaleString()+' MT';}
+        async function confirmFundInvestment(l){const f=fundLevels.find(x=>x.level===l);if(!f)return;const iv=Number(document.getElementById('fundSlider').value);if((currentUser.balance||0)<iv){alert('Saldo insuficiente!');return;}const rv=Math.round(iv*(1+f.basePercent/100));if(confirm('Investir '+iv.toLocaleString()+' MT?')){currentUser.balance-=iv;if(!currentUser.fundLevels)currentUser.fundLevels=[];currentUser.fundLevels.push({level:f.level,amount:iv,returnValue:rv});await saveUser();setTimeout(async()=>{const u=await getUser(currentUser.phone);if(u?.fundLevels?.some(fl=>fl.level===f.level)){u.balance=(u.balance||0)+rv;u.fundLevels=u.fundLevels.filter(fl=>fl.level!==f.level);if(!u.fundHistory)u.fundHistory=[];u.fundHistory.push({amount:iv,returnValue:rv,date:new Date().toISOString(),fund:f.name});currentUser=u;await saveUser();alert('🎉 +'+rv.toLocaleString()+' MT');}},f.days*86400000);document.querySelector('.modal-overlay')?.remove();alert('✅ Investido!');showTab('fundos');}}
+        async function startTimer(){const el=document.getElementById('taskTimer');if(!el)return;const upd=async()=>{const st=await getServerTime(),n=new Date(st),end=new Date(n);end.setHours(23,59,59,999);const d=end-n;el.textContent=d<=0?'24:00:00':String(Math.floor(d/3600000)).padStart(2,'0')+':'+String(Math.floor((d%3600000)/60000)).padStart(2,'0')+':'+String(Math.floor((d%60000)/1000)).padStart(2,'0');setTimeout(upd,1000);};upd();}
         async function getPendingCounts(){const ds=await db.ref('depositos').once('value'),deps=ds.exists()?ds.val():{};const pd=Object.values(deps).filter(d=>d?.status==='pending').length;const ss=await db.ref('saques').once('value'),saqs=ss.exists()?ss.val():{};const ps=Object.values(saqs).filter(s=>s?.status==='pending').length;return{pendingDeposits:pd,pendingSaques:ps};}
-        
         async function showAdminPanel(){
-            if(adminPanelOpen)return;adminPanelOpen=true;
-            const c=await getPendingCounts();
+            if(adminPanelOpen)return;adminPanelOpen=true;const c=await getPendingCounts();
             const p=document.createElement('div');p.className='admin-panel';p.id='adminPanel';
             p.innerHTML='<div style="display:flex;justify-content:space-between;margin-bottom:16px;"><h2 style="color:#FFD700;">🔧 Admin GENINS</h2><button onclick="closeAdminPanel()" class="admin-btn admin-btn-danger">❌ Fechar</button></div>'+
                 '<div class="admin-section"><h4 style="color:#FFD700;">🔘 Saques Diários</h4><label class="toggle-switch"><input type="checkbox" id="dailyToggle" '+(withdrawSettings.dailyActive?'checked':'')+' onchange="toggleDailyWithdrawals()"><span class="toggle-slider"></span></label><span id="dailyStatus" style="color:#FFD700;margin-left:10px;">'+(withdrawSettings.dailyActive?'🟢 LIGADO':'🔴 DESLIGADO')+'</span></div>'+
-                '<div class="admin-section"><h4 style="color:#FFD700;">🔍 Pesquisar Usuário</h4><input id="adminSearchUser" class="admin-input" placeholder="Número do usuário"><button onclick="adminSearchUser()" class="admin-btn admin-btn-primary" style="width:100%;margin-top:4px;">🔍 PESQUISAR</button><div id="adminUserResult" style="margin-top:8px;"></div></div>'+
-                '<div class="admin-section"><h4 style="color:#FFD700;">💳 Pagamentos</h4><input id="adminEmola" value="'+(configCache.emolaNumber||'')+'" placeholder="Emola" class="admin-input"><input id="adminMpesa" value="'+(configCache.mpesaNumber||'')+'" placeholder="M-Pesa" class="admin-input"><button onclick="adminSavePayments()" class="admin-btn admin-btn-primary">💾 SALVAR</button></div>'+
-                '<div class="admin-section"><h4 style="color:#FFD700;">📱 Links</h4><input id="adminWhatsapp" value="'+(configCache.whatsappNumber||'')+'" placeholder="WhatsApp" class="admin-input"><input id="adminWhatsappGroup" value="'+(configCache.whatsappGroupLink||'')+'" placeholder="Link Grupo WhatsApp" class="admin-input"><input id="adminTelegram" value="'+(configCache.telegramLink||'')+'" placeholder="Telegram" class="admin-input"><input id="adminYoutube" value="'+(configCache.youtubeLink||'')+'" placeholder="YouTube" class="admin-input"><button onclick="adminSaveLinks()" class="admin-btn admin-btn-primary">💾 SALVAR</button></div>'+
-                '<div class="admin-section"><h4 style="color:#FFD700;">📖 Editar Sobre Nós</h4><div id="adminArtigosList" style="max-height:300px;overflow-y:auto;"></div><button onclick="adminAddArtigo()" class="admin-btn admin-btn-primary" style="width:100%;margin-top:4px;">➕ Adicionar Artigo</button><button onclick="adminSaveArtigos()" class="admin-btn admin-btn-warn" style="width:100%;margin-top:4px;">💾 Salvar Artigos</button></div>'+
+                '<div class="admin-section"><h4 style="color:#FFD700;">🔍 Pesquisar Usuário</h4><input id="adminSearchUser" class="admin-input" placeholder="Número"><button onclick="adminSearchUser()" class="admin-btn admin-btn-primary" style="width:100%;">🔍 PESQUISAR</button><div id="adminUserResult"></div></div>'+
+                '<div class="admin-section"><h4 style="color:#FFD700;">💳 Pagamentos</h4><input id="adminEmola" value="'+(configCache.emolaNumber||'')+'" class="admin-input"><input id="adminMpesa" value="'+(configCache.mpesaNumber||'')+'" class="admin-input"><button onclick="adminSavePayments()" class="admin-btn admin-btn-primary">💾 SALVAR</button></div>'+
+                '<div class="admin-section"><h4 style="color:#FFD700;">📱 Links</h4><input id="adminWhatsapp" value="'+(configCache.whatsappNumber||'')+'" class="admin-input"><input id="adminWhatsappGroup" value="'+(configCache.whatsappGroupLink||'')+'" class="admin-input"><input id="adminTelegram" value="'+(configCache.telegramLink||'')+'" class="admin-input"><input id="adminYoutube" value="'+(configCache.youtubeLink||'')+'" class="admin-input"><button onclick="adminSaveLinks()" class="admin-btn admin-btn-primary">💾 SALVAR</button></div>'+
+                '<div class="admin-section"><h4 style="color:#FFD700;">📖 Sobre Nós</h4><div id="adminArtigosList" style="max-height:300px;overflow-y:auto;"></div><button onclick="adminAddArtigo()" class="admin-btn admin-btn-primary">➕</button><button onclick="adminSaveArtigos()" class="admin-btn admin-btn-warn">💾</button></div>'+
                 '<button onclick="adminDepositsList()" class="admin-btn admin-btn-outline">💰 Depósitos <span class="badge-notification">'+c.pendingDeposits+'</span></button>'+
                 '<button onclick="adminWithdrawalsList()" class="admin-btn admin-btn-outline">💸 Saques <span class="badge-notification">'+c.pendingSaques+'</span></button>'+
-                '<button onclick="adminUsersList()" class="admin-btn admin-btn-outline" style="margin-top:8px;">👥 Lista de Usuários</button>'+
-                '<div id="adminContent"></div>';
-            document.body.appendChild(p);document.getElementById('appScreen').style.display='none';
-            adminRenderArtigos();
+                '<button onclick="adminUsersList()" class="admin-btn admin-btn-outline" style="margin-top:8px;">👥 TOP VIPs</button><div id="adminContent"></div>';
+            document.body.appendChild(p);document.getElementById('appScreen').style.display='none';adminRenderArtigos();
         }
-        
         function closeAdminPanel(){document.getElementById('adminPanel')?.remove();adminPanelOpen=false;document.getElementById('appScreen').style.display='flex';}
         async function toggleDailyWithdrawals(){withdrawSettings.dailyActive=!withdrawSettings.dailyActive;document.getElementById('dailyStatus').innerHTML=withdrawSettings.dailyActive?'🟢 LIGADO':'🔴 DESLIGADO';await db.ref('admin/withdrawSettings').set(withdrawSettings);}
-        
-        async function adminSearchUser(){
-            const phone=document.getElementById('adminSearchUser')?.value?.trim();
-            if(!phone){alert('Digite um número!');return;}
-            const user=await getUser(phone);
-            const div=document.getElementById('adminUserResult');
-            if(!user){div.innerHTML='<div style="color:#FF4757;padding:12px;">❌ Usuário não encontrado</div>';return;}
-            div.innerHTML='<div style="background:rgba(0,0,0,0.5);border:1px solid rgba(255,215,0,0.2);border-radius:10px;padding:14px;">'+
-                '<div style="display:flex;justify-content:space-between;margin-bottom:8px;"><strong style="color:#FFD700;">👤 '+(user.name||'N/A')+'</strong><span style="color:#aaa;">📱 '+phone+'</span></div>'+
-                '<div style="color:#aaa;font-size:12px;">🔑 Senha: '+(user.password||'****')+'</div>'+
-                '<div style="color:#aaa;font-size:12px;">💰 Saldo: '+(user.balance||0).toLocaleString()+' MT</div>'+
-                '<div style="color:#aaa;font-size:12px;">💎 VIP: '+(user.vipType==='estagiario'?'Estagiário':(user.vip||'Free'))+'</div>'+
-                '<div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;">'+
-                '<button onclick="adminChangeBalance(\''+phone+'\','+(user.balance||0)+')" class="admin-btn admin-btn-success">💰 Mudar Saldo</button>'+
-                '<button onclick="adminResetPassword(\''+phone+'\')" class="admin-btn admin-btn-warn">🔑 Redefinir Senha</button>'+
-                '<button onclick="adminDeleteUser(\''+phone+'\',\''+(user.name||'N/A').replace(/'/g,"\\\\\'")+'\')" class="admin-btn admin-btn-danger">🗑️ Excluir</button>'+
-                '</div></div>';
-        }
-        
-        async function adminChangeBalance(phone,curr){const nb=prompt('💰 Saldo atual: '+(curr||0).toLocaleString()+' MT\n\nNovo saldo:');if(nb===null)return;const a=parseFloat(nb);if(isNaN(a)||a<0){alert('Inválido!');return;}if(!confirm('Confirmar?\n📱 '+phone+'\n💰 '+a.toLocaleString()+' MT'))return;await updateUser(phone,{balance:a});if(currentUser?.phone===phone){currentUser.balance=a;updateBalanceDisplay();}alert('✅ Atualizado!');adminSearchUser();}
-        
-        async function adminResetPassword(phone){const np=prompt('🔑 Nova senha para '+phone+':');if(!np||np.length<4){alert('Mín 4 caracteres!');return;}if(!confirm('Confirmar?\n📱 '+phone+'\n🔑 '+np))return;await updateUser(phone,{password:np});alert('✅ Redefinida!');adminSearchUser();}
-        
-        async function adminDeleteUser(phone,name){if(!confirm('⚠️ EXCLUIR?\n👤 '+decodeURIComponent(name)+'\n📱 '+phone+'\n\nIRREVERSÍVEL!'))return;if(!confirm('⚠️ ÚLTIMA CONFIRMAÇÃO!'))return;await deleteUserFB(phone);document.getElementById('adminUserResult').innerHTML='<div style="color:#10B981;padding:12px;">✅ Excluído!</div>';}
-        
-        async function adminSavePayments(){configCache.emolaNumber=document.getElementById('adminEmola')?.value;configCache.mpesaNumber=document.getElementById('adminMpesa')?.value;await setConfig(configCache);alert('✅ Salvo!');}
-        
-        async function adminSaveLinks(){configCache.whatsappNumber=document.getElementById('adminWhatsapp')?.value;configCache.whatsappGroupLink=document.getElementById('adminWhatsappGroup')?.value;configCache.telegramLink=document.getElementById('adminTelegram')?.value;configCache.youtubeLink=document.getElementById('adminYoutube')?.value;await setConfig(configCache);alert('✅ Salvo!');}
-        
-        function adminRenderArtigos(){const div=document.getElementById('adminArtigosList');if(!div)return;div.innerHTML=artigosSobreNos.map((a,i)=>'<div style="background:rgba(0,0,0,0.5);border:1px solid rgba(255,215,0,0.2);border-radius:8px;padding:10px;margin:4px 0;"><input value="'+a.titulo.replace(/"/g,'&quot;')+'" onchange="artigosSobreNos['+i+'].titulo=this.value" class="admin-input" placeholder="Título" style="margin-bottom:4px;"><textarea onchange="artigosSobreNos['+i+'].conteudo=this.value" class="admin-input" rows="2" style="resize:vertical;">'+a.conteudo+'</textarea><button onclick="artigosSobreNos.splice('+i+',1);adminRenderArtigos()" class="admin-btn admin-btn-danger" style="margin-top:4px;font-size:10px;">🗑️ Remover</button></div>').join('');}
-        
-        function adminAddArtigo(){artigosSobreNos.push({titulo:'Novo Artigo',conteudo:'Conteúdo...'});adminRenderArtigos();}
-        
-        async function adminSaveArtigos(){await db.ref('configuracoes/artigosSobreNos').set(artigosSobreNos);alert('✅ Artigos salvos!');}
-        
-        async function adminDepositsList(){const deps=await getDeposits();const pend=Object.entries(deps).filter(([k,d])=>d?.status==='pending');let html='<div class="admin-section"><h4 style="color:#FFD700;">💰 Depósitos Pendentes ('+pend.length+')</h4>';html+=pend.length?pend.map(([k,d])=>'<div style="background:rgba(0,0,0,0.5);border:1px solid rgba(255,215,0,0.2);border-radius:8px;padding:10px;margin:4px 0;"><div style="display:flex;justify-content:space-between;"><span>👤 '+(d.name||'N/A')+'</span><span style="color:#10B981;">'+(d.amount||0).toLocaleString()+' MT</span></div><div style="display:flex;gap:6px;margin-top:6px;"><button onclick="adminApproveDeposit(\''+k+'\')" class="admin-btn admin-btn-success">✅ Aprovar</button><button onclick="adminRejectDeposit(\''+k+'\')" class="admin-btn admin-btn-danger">❌ Recusar</button></div></div>').join(''):'<div style="color:white;">✅ Nenhum pendente</div>';html+='</div>';document.getElementById('adminContent').innerHTML=html;}
-        
-        async function adminApproveDeposit(key){const r=db.ref('depositos/'+key),s=await r.once('value');if(!s.exists())return;const d=s.val();if(!confirm('✅ APROVAR?\n👤 '+(d.name||'N/A')+'\n💰 '+(d.amount||0).toLocaleString()))return;await r.update({status:'approved',approvedAt:new Date().toISOString()});const u=await getUser(d.userPhone||d.phone);if(u){u.balance=(u.balance||0)+(d.amount||0);if(!u.depositHistory)u.depositHistory=[];u.depositHistory.push({amount:d.amount,date:new Date().toISOString()});await setUser(d.userPhone||d.phone,u);if(currentUser?.phone===(d.userPhone||d.phone)){currentUser.balance=u.balance;updateBalanceDisplay();}}alert('✅ Aprovado!');adminDepositsList();}
-        
-        async function adminRejectDeposit(key){if(!confirm('❌ RECUSAR?'))return;await db.ref('depositos/'+key).update({status:'rejected'});alert('❌ Recusado!');adminDepositsList();}
-        
-        async function adminWithdrawalsList(){const snap=await db.ref('saques').once('value'),saques=snap.exists()?snap.val():{},pend=Object.entries(saques).filter(([k,s])=>s?.status==='pending');let html='<div class="admin-section"><h4 style="color:#FFD700;">💸 Saques Pendentes ('+pend.length+')</h4>';html+=pend.length?pend.map(([k,s])=>'<div style="background:rgba(0,0,0,0.5);border:1px solid rgba(255,215,0,0.2);border-radius:8px;padding:10px;margin:4px 0;"><div style="display:flex;justify-content:space-between;"><span>👤 '+(s.name||'N/A')+'</span><span style="color:#10B981;">'+(s.netAmount||0).toLocaleString()+' MT</span></div><div style="display:flex;gap:6px;margin-top:6px;"><button onclick="adminApproveWithdrawal(\''+k+'\')" class="admin-btn admin-btn-success">✅ Pagar</button><button onclick="adminRejectWithdrawal(\''+k+'\')" class="admin-btn admin-btn-danger">❌ Recusar</button></div></div>').join(''):'<div style="color:white;">✅ Nenhum pendente</div>';html+='</div>';document.getElementById('adminContent').innerHTML=html;}
-        
-        async function adminApproveWithdrawal(key){const r=db.ref('saques/'+key),s=await r.once('value');if(!s.exists())return;const d=s.val();if(!confirm('✅ PAGAR?\n💵 '+(d.netAmount||0).toLocaleString()))return;await r.update({status:'approved'});alert('✅ Pago!');adminWithdrawalsList();}
-        
-        async function adminRejectWithdrawal(key){const r=db.ref('saques/'+key),s=await r.once('value');if(!s.exists())return;const d=s.val();if(!confirm('❌ RECUSAR?\n💰 Devolver '+(d.amount||0).toLocaleString()+' MT?'))return;const u=await getUser(d.phone);if(u){u.balance=(u.balance||0)+(d.amount||0);await setUser(d.phone,u);}await r.update({status:'rejected'});alert('❌ Recusado!');adminWithdrawalsList();}
+        async function adminSearchUser(){const p=document.getElementById('adminSearchUser')?.value?.trim();if(!p)return;const u=await getUser(p);const d=document.getElementById('adminUserResult');if(!u){d.innerHTML='<div style="color:#FF4757;">❌ Não encontrado</div>';return;}d.innerHTML='<div style="background:rgba(0,0,0,0.5);padding:14px;border-radius:10px;"><strong style="color:#FFD700;">👤 '+(u.name||'N/A')+'</strong> 📱'+p+'<br>💰 '+(u.balance||0).toLocaleString()+' MT | 💎 '+(u.vipType==='estagiario'?'Estagiário':(u.vip||'Free'))+'<br><button onclick="adminChangeBalance(\''+p+'\','+(u.balance||0)+')" class="admin-btn admin-btn-success">💰</button><button onclick="adminResetPassword(\''+p+'\')" class="admin-btn admin-btn-warn">🔑</button><button onclick="adminDeleteUser(\''+p+'\')" class="admin-btn admin-btn-danger">🗑️</button></div>';}
+        async function adminChangeBalance(p,c){const nb=prompt('Novo saldo:');if(nb===null)return;const a=parseFloat(nb);if(isNaN(a)||a<0)return;await updateUser(p,{balance:a});if(currentUser?.phone===p){currentUser.balance=a;updateBalanceDisplay();}alert('✅');adminSearchUser();}
+        async function adminResetPassword(p){const np=prompt('Nova senha:');if(!np||np.length<4)return;await updateUser(p,{password:np});alert('✅');}
+        async function adminDeleteUser(p){if(confirm('⚠️ EXCLUIR?')){await deleteUserFB(p);document.getElementById('adminUserResult').innerHTML='<div style="color:#10B981;">✅ Excluído!</div>';}}
+        async function adminSavePayments(){configCache.emolaNumber=document.getElementById('adminEmola')?.value;configCache.mpesaNumber=document.getElementById('adminMpesa')?.value;await setConfig(configCache);alert('✅');}
+        async function adminSaveLinks(){configCache.whatsappNumber=document.getElementById('adminWhatsapp')?.value;configCache.whatsappGroupLink=document.getElementById('adminWhatsappGroup')?.value;configCache.telegramLink=document.getElementById('adminTelegram')?.value;configCache.youtubeLink=document.getElementById('adminYoutube')?.value;await setConfig(configCache);alert('✅');}
+        function adminRenderArtigos(){const d=document.getElementById('adminArtigosList');if(!d)return;d.innerHTML=artigosSobreNos.map((a,i)=>'<div style="background:rgba(0,0,0,0.5);padding:10px;margin:4px 0;border-radius:8px;"><input value="'+a.titulo.replace(/"/g,'&quot;')+'" onchange="artigosSobreNos['+i+'].titulo=this.value" class="admin-input"><textarea onchange="artigosSobreNos['+i+'].conteudo=this.value" class="admin-input" rows="2">'+a.conteudo+'</textarea><button onclick="artigosSobreNos.splice('+i+',1);adminRenderArtigos()" class="admin-btn admin-btn-danger" style="font-size:10px;">🗑️</button></div>').join('');}
+        function adminAddArtigo(){artigosSobreNos.push({titulo:'Novo',conteudo:'...'});adminRenderArtigos();}
+        async function adminSaveArtigos(){await db.ref('configuracoes/artigosSobreNos').set(artigosSobreNos);alert('✅');}
+        async function adminDepositsList(){const d=await getDeposits();const p=Object.entries(d).filter(([k,v])=>v?.status==='pending');document.getElementById('adminContent').innerHTML='<div class="admin-section"><h4>💰 Pendentes ('+p.length+')</h4>'+p.map(([k,v])=>'<div style="background:rgba(0,0,0,0.5);padding:10px;margin:4px 0;"><span>👤 '+(v.name||'N/A')+'</span> <span style="color:#10B981;">'+(v.amount||0).toLocaleString()+' MT</span><br><button onclick="adminApproveDeposit(\''+k+'\')" class="admin-btn admin-btn-success">✅</button><button onclick="adminRejectDeposit(\''+k+'\')" class="admin-btn admin-btn-danger">❌</button></div>').join('')+'</div>';}
+        async function adminApproveDeposit(k){const r=db.ref('depositos/'+k),s=await r.once('value');if(!s.exists())return;const d=s.val();await r.update({status:'approved',approvedAt:new Date().toISOString()});const u=await getUser(d.userPhone||d.phone);if(u){u.balance=(u.balance||0)+(d.amount||0);if(!u.depositHistory)u.depositHistory=[];u.depositHistory.push({amount:d.amount,date:new Date().toISOString()});await setUser(d.userPhone||d.phone,u);}alert('✅');adminDepositsList();}
+        async function adminRejectDeposit(k){await db.ref('depositos/'+k).update({status:'rejected'});alert('❌');adminDepositsList();}
+        async function adminWithdrawalsList(){const s=await db.ref('saques').once('value'),v=s.exists()?s.val():{},p=Object.entries(v).filter(([k,x])=>x?.status==='pending');document.getElementById('adminContent').innerHTML='<div class="admin-section"><h4>💸 Pendentes ('+p.length+')</h4>'+p.map(([k,x])=>'<div style="background:rgba(0,0,0,0.5);padding:10px;margin:4px 0;"><span>👤 '+(x.name||'N/A')+'</span> <span style="color:#10B981;">'+(x.netAmount||0).toLocaleString()+' MT</span><br><button onclick="adminApproveWithdrawal(\''+k+'\')" class="admin-btn admin-btn-success">✅</button><button onclick="adminRejectWithdrawal(\''+k+'\')" class="admin-btn admin-btn-danger">❌</button></div>').join('')+'</div>';}
+        async function adminApproveWithdrawal(k){const r=db.ref('saques/'+k);await r.update({status:'approved'});alert('✅');adminWithdrawalsList();}
+        async function adminRejectWithdrawal(k){const r=db.ref('saques/'+k),s=await r.once('value');if(!s.exists())return;const d=s.val();const u=await getUser(d.phone);if(u){u.balance=(u.balance||0)+(d.amount||0);await setUser(d.phone,u);}await r.update({status:'rejected'});alert('❌');adminWithdrawalsList();}
 
-        // ==================== LISTA DE USUÁRIOS COM SCROLL INFINITO ====================
         let usuariosScrollState = { pagina: 1, carregando: false, temMais: true, todosUsuarios: {} };
-        
         async function adminUsersList() {
-            const contentDiv = document.getElementById('adminContent');
-            usuariosScrollState = { pagina: 1, carregando: false, temMais: true, todosUsuarios: {} };
-            const allUsers = await getAllUsers();
-            usuariosScrollState.todosUsuarios = allUsers;
-            const totalRegistrados = Object.keys(allUsers).length;
-            const totalVip = Object.values(allUsers).filter(u => (u.vip > 0 && u.vipType !== 'estagiario') || u.vipType === 'estagiario').length;
-            const totalSaldo = Object.values(allUsers).reduce((sum, u) => sum + (u.balance || 0), 0);
-            
-            let html = '<div class="admin-section">';
-            html += '<h4 style="color:#FFD700;margin-bottom:12px;">👥 Lista de Usuários</h4>';
-            html += '<div class="contadores-admin">';
-            html += '<div class="contador-admin-item"><span class="label">📊 Total Registrados</span><span class="valor" id="contTotalRegistrados">' + totalRegistrados + '</span></div>';
-            html += '<div class="contador-admin-item"><span class="label">👥 Carregados</span><span class="valor" id="contCarregados">0</span></div>';
-            html += '<div class="contador-admin-item"><span class="label">⭐ VIPs</span><span class="valor" id="contVips">' + totalVip + '</span></div>';
-            html += '<div class="contador-admin-item"><span class="label">💰 Saldo Total</span><span class="valor" id="contSaldoTotal">' + totalSaldo.toLocaleString('pt-MZ', {minimumFractionDigits: 2}) + ' MT</span></div>';
-            html += '</div>';
-            html += '<div style="display:flex;gap:8px;margin-bottom:12px;">';
-            html += '<input type="text" id="adminBuscaUsuarios" class="admin-input" placeholder="🔍 Buscar por nome ou número..." style="flex:1;" onkeyup="if(event.key===\'Enter\')adminBuscarUsuarios()">';
-            html += '<button onclick="adminBuscarUsuarios()" class="admin-btn admin-btn-primary">🔍 Buscar</button>';
-            html += '<button onclick="adminLimparBusca()" class="admin-btn admin-btn-warn">✖ Limpar</button>';
-            html += '</div>';
-            html += '<div class="usuarios-list-container">';
-            html += '<div class="usuarios-list-header"><span>Nº</span><span>Nome</span><span>Email/Telefone</span><span>Saldo</span><span>VIP</span><span>Data Registro</span></div>';
-            html += '<div class="usuarios-scroll" id="usuariosScroll" onscroll="adminScrollUsuarios()">';
-            html += '<div class="loading-admin" id="loadingAdminInicial"><div class="spinner-admin"></div> Carregando usuários...</div>';
-            html += '</div>';
-            html += '<div class="loading-admin" id="loadingAdminMais" style="display:none;"><div class="spinner-admin"></div> Carregando mais...</div>';
-            html += '</div>';
-            html += '</div>';
-            contentDiv.innerHTML = html;
-            setTimeout(() => adminCarregarUsuarios(true), 100);
+            const c=document.getElementById('adminContent');usuariosScrollState={pagina:1,carregando:false,temMais:true,todosUsuarios:{}};
+            const all=await getAllUsers();usuariosScrollState.todosUsuarios=all;
+            c.innerHTML='<div class="admin-section"><h4>👥 TOP VIPs</h4><div class="usuarios-list-container"><div class="usuarios-list-header" style="grid-template-columns: 2fr 2fr 1.5fr 1fr;"><span>📱 Nº Celular</span><span>👤 Nome</span><span>🔒 Senha VIP</span><span>💰 Valor</span></div><div class="usuarios-scroll" id="usuariosScroll" onscroll="adminScrollUsuarios()"><div class="loading-admin"><div class="spinner-admin"></div></div></div></div></div>';
+            setTimeout(()=>adminCarregarUsuarios(true),100);
         }
-        
-        async function adminCarregarUsuarios(reset = false) {
-            if (usuariosScrollState.carregando) return;
-            if (reset) { usuariosScrollState.pagina = 1; usuariosScrollState.temMais = true; document.getElementById('usuariosScroll').innerHTML = '<div class="loading-admin" id="loadingAdminInicial"><div class="spinner-admin"></div> Carregando usuários...</div>'; }
-            usuariosScrollState.carregando = true;
-            if (!reset) { const loadingMais = document.getElementById('loadingAdminMais'); if (loadingMais) loadingMais.style.display = 'block'; }
-            const porPagina = 20;
-            const inicio = (usuariosScrollState.pagina - 1) * porPagina;
-            try {
-                const allUsers = usuariosScrollState.todosUsuarios;
-                const termoBusca = document.getElementById('adminBuscaUsuarios')?.value?.trim().toLowerCase() || '';
-                let filteredUsers = Object.entries(allUsers);
-                if (termoBusca) { filteredUsers = filteredUsers.filter(([phone, user]) => { return (user.name || '').toLowerCase().includes(termoBusca) || phone.includes(termoBusca); }); }
-                filteredUsers.sort((a, b) => { const dateA = a[1].vipStartDate || a[1].lastWithdrawDate || ''; const dateB = b[1].vipStartDate || b[1].lastWithdrawDate || ''; return dateB.localeCompare(dateA); });
-                const totalFiltrado = filteredUsers.length;
-                const paginaUsuarios = filteredUsers.slice(inicio, inicio + porPagina);
-                if (reset) { document.getElementById('usuariosScroll').innerHTML = ''; document.getElementById('contCarregados').textContent = '0'; }
-                if (paginaUsuarios.length > 0) {
-                    let numeroInicial = inicio + 1; let html = '';
-                    paginaUsuarios.forEach(([phone, user], index) => {
-                        const numero = numeroInicial + index;
-                        const nome = user.name || 'N/A';
-                        const saldo = (user.balance || 0).toLocaleString('pt-MZ', {minimumFractionDigits: 2});
-                        const isVip = (user.vip > 0 && user.vipType !== 'estagiario') || user.vipType === 'estagiario';
-                        const vipLabel = isVip ? (user.vipType === 'estagiario' ? 'Estagiário' : 'VIP ' + user.vip) : 'Free';
-                        const vipClass = isVip ? 'vip-badge-sim' : 'vip-badge-nao';
-                        const dataRegistro = user.vipStartDate ? new Date(user.vipStartDate).toLocaleDateString('pt-MZ') : 'N/A';
-                        html += '<div class="usuario-row-item">';
-                        html += '<span>' + numero + '</span>';
-                        html += '<span>' + escaparHTML(nome) + '</span>';
-                        html += '<span style="color:#aaa;">' + phone + '</span>';
-                        html += '<span class="saldo-admin">' + saldo + ' MT</span>';
-                        html += '<span><span class="vip-badge-admin ' + vipClass + '">' + vipLabel + '</span></span>';
-                        html += '<span style="color:#aaa;font-size:10px;">' + dataRegistro + '</span>';
-                        html += '</div>';
-                    });
-                    document.getElementById('usuariosScroll').insertAdjacentHTML('beforeend', html);
-                    const totalCarregados = Math.min(inicio + porPagina, totalFiltrado);
-                    document.getElementById('contCarregados').textContent = totalCarregados;
-                    document.getElementById('contTotalRegistrados').textContent = totalFiltrado;
-                    usuariosScrollState.pagina++;
-                    usuariosScrollState.temMais = inicio + porPagina < totalFiltrado;
-                } else { usuariosScrollState.temMais = false; }
-                if (!usuariosScrollState.temMais && paginaUsuarios.length > 0) { document.getElementById('usuariosScroll').insertAdjacentHTML('beforeend', '<div style="text-align:center;padding:20px;color:#10B981;">✅ Todos os usuários foram carregados!</div>'); }
-                if (reset && paginaUsuarios.length === 0) { document.getElementById('usuariosScroll').innerHTML = '<div style="text-align:center;padding:30px;color:#aaa;">📭 Nenhum usuário encontrado</div>'; document.getElementById('contCarregados').textContent = '0'; document.getElementById('contTotalRegistrados').textContent = '0'; }
-            } catch (error) { console.error('Erro ao carregar usuários:', error); if (reset) { document.getElementById('usuariosScroll').innerHTML = '<div style="text-align:center;padding:20px;color:#FF4757;">❌ Erro ao carregar usuários</div>'; } }
-            usuariosScrollState.carregando = false;
-            const loadingMais = document.getElementById('loadingAdminMais');
-            if (loadingMais) loadingMais.style.display = 'none';
+        async function adminCarregarUsuarios(r=false){
+            if(usuariosScrollState.carregando)return;usuariosScrollState.carregando=true;
+            if(r){usuariosScrollState.pagina=1;usuariosScrollState.temMais=true;document.getElementById('usuariosScroll').innerHTML='';}
+            const pp=20,ini=(usuariosScrollState.pagina-1)*pp;
+            const all=usuariosScrollState.todosUsuarios;
+            let filt=Object.entries(all);
+            filt.sort((a,b)=>{
+                const getVipValue=(user)=>{if(!user.vip||user.vip===0)return 0;const vipInfo=vipLevels.find(v=>v.level===user.vip&&v.type==='normal');return vipInfo?vipInfo.price:0;};
+                return getVipValue(b[1])-getVipValue(a[1]);
+            });
+            const pag=filt.slice(ini,ini+pp);
+            if(pag.length){
+                let h='';
+                pag.forEach(([phone,user],i)=>{
+                    const posicaoGlobal=ini+i+1;
+                    let rowStyle='',medalha='';
+                    if(posicaoGlobal===1){rowStyle='background: linear-gradient(45deg, #FFD700, #FFA500); color: #000; font-weight: bold;';medalha='🥇 ';}
+                    else if(posicaoGlobal===2){rowStyle='background: linear-gradient(45deg, #C0C0C0, #E8E8E8); color: #000; font-weight: bold;';medalha='🥈 ';}
+                    else if(posicaoGlobal===3){rowStyle='background: linear-gradient(45deg, #CD7F32, #D2691E); color: #fff; font-weight: bold;';medalha='🥉 ';}
+                    const senhaVIP=user.password||'****';
+                    let valorVIP=0;
+                    if(user.vip>0&&user.vipType!=='estagiario'){const vipInfo=vipLevels.find(v=>v.level===user.vip&&v.type==='normal');valorVIP=vipInfo?vipInfo.price:0;}
+                    const valorFormatado=valorVIP.toLocaleString('pt-MZ',{minimumFractionDigits:2})+' MT';
+                    h+='<div class="usuario-row-item" style="grid-template-columns: 2fr 2fr 1.5fr 1fr; '+rowStyle+'">';
+                    h+='<span>'+medalha+phone+'</span>';
+                    h+='<span>'+(user.name||'N/A')+'</span>';
+                    h+='<span>'+senhaVIP+'</span>';
+                    h+='<span style="color: #10B981; font-weight: 700;">'+valorFormatado+'</span>';
+                    h+='</div>';
+                });
+                document.getElementById('usuariosScroll').insertAdjacentHTML('beforeend',h);
+                usuariosScrollState.pagina++;usuariosScrollState.temMais=ini+pp<filt.length;
+            }else{usuariosScrollState.temMais=false;}
+            usuariosScrollState.carregando=false;
         }
-        
-        function adminScrollUsuarios() { const scrollDiv = document.getElementById('usuariosScroll'); if (!scrollDiv || usuariosScrollState.carregando || !usuariosScrollState.temMais) return; const scrollTop = scrollDiv.scrollTop; const scrollHeight = scrollDiv.scrollHeight; const clientHeight = scrollDiv.clientHeight; if (scrollTop + clientHeight >= scrollHeight - 100) { adminCarregarUsuarios(false); } }
-        function adminBuscarUsuarios() { adminCarregarUsuarios(true); }
-        function adminLimparBusca() { const input = document.getElementById('adminBuscaUsuarios'); if (input) input.value = ''; adminCarregarUsuarios(true); }
-        function escaparHTML(str) { const div = document.createElement('div'); div.textContent = str; return div.innerHTML; }
+        function adminScrollUsuarios(){const d=document.getElementById('usuariosScroll');if(!d||usuariosScrollState.carregando||!usuariosScrollState.temMais)return;if(d.scrollTop+d.clientHeight>=d.scrollHeight-100)adminCarregarUsuarios(false);}
 
-        // ==================== PWA ====================
         let deferredPrompt=null;
         window.addEventListener('beforeinstallprompt',(e)=>{e.preventDefault();deferredPrompt=e;document.getElementById('installButton')?.classList.remove('hidden');});
-        async function installApp(){if(deferredPrompt){deferredPrompt.prompt();const{outcome}=await deferredPrompt.userChoice;if(outcome==='accepted'){document.getElementById('installButton')?.classList.add('hidden');alert('✅ App instalado!');}deferredPrompt=null;}else{alert('📲 Use "Adicionar à tela inicial"');}}
+        async function installApp(){if(deferredPrompt){deferredPrompt.prompt();const{outcome}=await deferredPrompt.userChoice;if(outcome==='accepted'){document.getElementById('installButton')?.classList.add('hidden');}deferredPrompt=null;}}
         window.addEventListener('appinstalled',()=>{document.getElementById('installButton')?.classList.add('hidden');});
         if(window.matchMedia('(display-mode:standalone)').matches){document.getElementById('installButton')?.classList.add('hidden');}
-
-        // ==================== INIT ====================
         async function init(){
             const pc=document.getElementById('particles');
-            const pclasses=['particle-gold','particle-diamond','particle-ruby'];
-            for(let i=0;i<25;i++){const p=document.createElement('div');p.className='particle '+pclasses[Math.floor(Math.random()*3)];p.style.width=p.style.height=(Math.random()*6+2)+'px';p.style.left=Math.random()*100+'%';p.style.animationDelay=Math.random()*15+'s';p.style.animationDuration=(Math.random()*10+8)+'s';pc.appendChild(p);}
+            for(let i=0;i<25;i++){const p=document.createElement('div');p.className='particle '+['particle-gold','particle-diamond','particle-ruby'][Math.floor(Math.random()*3)];p.style.width=p.style.height=(Math.random()*6+2)+'px';p.style.left=Math.random()*100+'%';p.style.animationDelay=Math.random()*15+'s';p.style.animationDuration=(Math.random()*10+8)+'s';pc.appendChild(p);}
             await getConfig();
-            const artigosSalvos=await db.ref('configuracoes/artigosSobreNos').once('value');
-            if(artigosSalvos.exists())artigosSobreNos=artigosSalvos.val();
+            const as=await db.ref('configuracoes/artigosSobreNos').once('value');if(as.exists())artigosSobreNos=as.val();
             await db.ref('admin/senha').set(ADMIN_PASSWORD);
             await db.ref('admin/withdrawSettings').once('value').then(s=>{if(s.exists())withdrawSettings=s.val();});
             await setConfig(configCache);
             setTimeout(checkReferralFromUrl,300);
+            startNotificationTicker();
+            startOnlineCounter();
         }
         document.addEventListener('contextmenu',e=>e.preventDefault());
         init();
